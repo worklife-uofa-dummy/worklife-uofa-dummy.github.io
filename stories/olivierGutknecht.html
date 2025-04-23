@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="Document type"
+ class="staticSearch_desc" content="Poems"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <meta charset="utf-8"></meta>
+    <meta name="Location" class="staticSearch_feat" content="Ontario"></meta>
+    <meta name="Occupation" class="staticSearch_feat" content="Education"></meta>
+    <meta name="City" class="staticSearch_feat" content="Scarborough"></meta>
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'></link>
+    <title>Olivier Gutknecht</title>
+    <link rel="stylesheet" href="/assets/css/main.css"></link>
+    <style>
+       /* Style the Image Used to Trigger the Modal */
+
+
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1; 
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.9); 
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-height: 82%;
+}
+
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+  font-size: 2.3em;
+}
+.captionbox {
+  display: flex;
+  max-width: 1200px;
+  margin: auto;
+  min-width: 10%;
+}
+.captions {
+  width: 60%;
+  text-align: center;
+  font-size: 1.6em;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+} 
+  body {
+          font-family: 'Abel';font-size: 14px;
+  }
+  .images {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  .stickyTest {
+    position: sticky;
+    top: 0;
+  }
+  .headerImg {
+    white-space: pre-line;
+    width: 50%;
+    margin-right: 5px;
+    transition: opacity 0.3s ease-in-out;
+    height: auto;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+
+  #img_prev:hover {opacity: 0.7;}
+  #img_pres:hover {opacity: 0.7;}
+
+  .titlebar {
+    margin-bottom: 5px;
+    margin-top: 76px;
+    font-size: 2.3em;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+  }
+  .content {
+    margin-top: 30px;
+    margin: auto;
+    max-width: 1200px;
+    font-size: 1.4em;
+    text-align: justify;
+    margin-bottom: 75px;
+  }
+  .playButton {
+    max-width: 42px;
+    border: none;
+    background: none;
+    padding: 0;
+  }
+  .playButton:hover {
+    opacity: 70%;
+    cursor: pointer;
+  }
+
+      </style>
+  </head>
+
+  <body>
+    
+    <head>
+  <link rel="stylesheet" href="/assets/css/main.css"></link>
+</head>
+<div class = "headerbar">
+	<div style = "position: absolute; left: 0; width: 700px; height: 70px;">
+		<a href="/"><img style="width: 160px; height: 70px;" src="../assets/img/logo.png"></a></div>
+	<div style="margin-right: 22px;"><a href="/explore">EXPLORE</a> | <a href="/exhibitions">EXHIBITIONS</a></div>
+</div>
+
+    
+    <div class = "titlebar">Olivier Gutknecht</div>
+    <div class = "images">
+      <img id = "img_prev" class = "headerImg" src = "../assets/img/olivierGutknecht_prev.jpg" alt = ""></img>
+      <img id = "img_pres" class = "headerImg" src = "../assets/img/olivierGutknecht_pres.jpg" alt = ""></img>
+    </div>
+    <div id="modalOverlay" class="modal">
+      <span class="close">X</span>
+      <img class="modal-content" id="modal_img"></img>
+      <div id="caption"></div>
+    </div>
+    <div class = "captionbox">
+      <div class = "captions">Occupation, year, and location for this image</div>
+      <div class = "captions">Occupation, year, and location for this image</div>
+    </div>
+    <div class = "content">
+    <h1 id="heading-test">Heading Test</h1>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+<h2 id="heading-test-2">Heading test 2</h2>
+
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+<p><img src="" /></p>
+<audio controls="" src="../assets/audio/olivierGutknecht_pres.wav"></audio>
+
+<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<blockquote>
+  <p><strong><em>Quote test quote test quote test quote test quote test quote test quote test quote test quote test quote test quote test quote test.</em></strong></p>
+</blockquote>
+
+<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <a href="#">Back to top</a>
+    </div>
+    <head>
+    <link rel="stylesheet" href="/assets/css/main.css"></link>
+    <style>
+    .bottombar {
+        width: 100%;
+        max-height: 60px;
+        position: fixed;
+        z-index: 1;
+        bottom: 0;
+        font-size: 1.5em;
+        background-color: #fff;
+        transition: 0.3s;
+    }
+    .audioContainer {
+      width: 100%;
+      background-color: #ffeed862;
+      display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        height: 60px;
+    }
+    .metadata { 
+      margin-left: 25px;
+      font-size: 1.2em;
+      margin-top: -20px;
+    }
+    .tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Tooltip text */
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+  
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+  
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  /* Tooltip arrow */
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  .imageTooltip {
+      width: 44px;
+      height: 44px;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+</style>
+</head>
+
+<div class = "bottombar" id = "bottomBar">
+<div class = "audioContainer">
+        <div style="padding: 5px;"><h2>Ambiences</h2></div>
+        <div style = "padding: 5px; margin-top: 8px;"><audio controls = "true" src = "" id = "ambience01"></audio></div>
+        <div class = "tooltip"><img class = "imageTooltip" src = "../assets/img/infoTooltip.png" alt = "Caption for image 1"></img><span class="tooltiptext">Information tooltip about the audio. Information tooltip about the audio. Information tooltip about the audio.</span></div>
+</div>
+</div>
+
+    <script>
+      // Get the modal
+      var modal = document.getElementById("modalOverlay");
+      var modalImg = document.getElementById("modal_img");
+      var bottomBar = document.getElementById("bottomBar");
+      
+      // Get the image and insert it inside the modal - use its "alt" text as a caption
+      var img1 = document.getElementById("img_prev");
+      var captionText1 = document.getElementById("caption");
+      img1.onclick = function(){
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText1.innerHTML = this.alt;
+        bottomBar.style.opacity = 0;
+      }
+      var img2 = document.getElementById("img_pres");
+      var captionText2 = document.getElementById("caption");
+      img2.onclick = function(){
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText2.innerHTML = this.alt;
+        bottomBar.style.opacity = 0;
+      }
+      
+      
+      var curr_span = document.getElementsByClassName("close")[0];
+      
+      curr_span.onclick = function() { 
+        modal.style.display = "none";
+        bottomBar.style.opacity = 1;
+      }
+      </script>
+  <script>
+    // Select elements
+    const audio = document.getElementById("interviewClip01");
+    const progressContainer = document.getElementById("progressContainer");
+
+    // Update progress function
+    function updateProgress() {
+      const progress = (audio.currentTime / audio.duration) * 100 || 0;
+      const angle = `${progress}%`;
+      
+      // Update the circular progress
+      progressContainer.style.background = `conic-gradient(rgba(197, 197, 197, 0.77) ${angle},rgba(228, 228, 228, 0) ${angle})`;
+    }
+
+    // Event listeners
+    audio.addEventListener("timeupdate", updateProgress);
+    audio.addEventListener("loadedmetadata", updateProgress); // Initial update
+  </script>
+
+  <script>
+	var currentlyPlaying = false;
+  var playButton = document.getElementById("playButton");
+	function fadeoutAudio(ambience, interviewClip) {
+		console.log(currentlyPlaying);
+		if (currentlyPlaying == false) {
+			if (interviewClip == "interviewClip01") {
+				currentlyPlaying = true;
+        playButton.src = "../assets/img/stop.png";
+			}
+			var interviewSound = document.getElementById(interviewClip);
+			var ambientSound = document.getElementById(ambience);
+			var interval = 25;
+			var ambVol = ambientSound.volume;
+			var clipVol = 0;
+			var clipPlaying = false;
+			var fadeout = setInterval(
+			function() {
+				if (ambientSound.volume - 0.01 > 0 ) {
+					ambientSound.volume -= 0.01;
+					ambVol -= 0.01;
+					if (ambVol < 0.9 && clipPlaying == false) {
+						interviewSound.volume = clipVol;
+						clipPlaying = true;
+						if (interviewClip == "interviewClip01") {
+							interviewSound.play();
+						}
+					}
+				}
+				if (ambVol < 0.9 && clipPlaying == true && clipVol + 0.01 < 0.9) {
+						clipVol += 0.01;
+						interviewSound.volume = clipVol;
+				}	
+				else if (ambientSound.volume <= 0.1 && clipVol > 0.88) {
+					clearInterval(fadeout);
+				}
+			}, interval);
+		}
+    else if (currentlyPlaying == true) {
+      interviewSound = document.getElementById(interviewClip);
+      interviewSound.currentTime = interviewSound.duration - 0.01;
+      playButton.src = "../assets/img/play.png";
+    }
+	}
+
+</script>
+
+<script>
+var interviewSound = document.getElementById('interviewClip01');
+var ambientSound = document.getElementById('ambience01');
+var playButton = document.getElementById("playButton");
+interviewSound.onended = function () {
+	interviewSound.currentTime = 0;
+	currentlyPlaying = false;
+	console.log("audio complete");
+	fadeoutAudio('interviewClip01', 'ambience01');
+  playButton.src = "../assets/img/play.png";
+}
+</script>
+
+  </body>
+</html>

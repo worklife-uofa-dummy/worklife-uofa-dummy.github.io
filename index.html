@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+    <title>Worklife Test! - </title>
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <!-- For styles with static names... -->
+<link href="/assets/css/style.css" rel="stylesheet">
+    <style>
+      body {
+          font-family: 'Abel';font-size: 14px;
+      }
+      </style>
+  </head>
+
+  <body>
+    <head>
+  <link rel="stylesheet" href="/assets/css/main.css"></link>
+</head>
+<div class = "sidebar" style = "margin-top: 80px;">
+	<h2>About</h2>
+	<p>Lorem ipsum dolor sit amet, 
+		consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+		enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+		Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+		Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+
+    <head>
+  <link rel="stylesheet" href="/assets/css/main.css"></link>
+</head>
+<div class = "headerbar">
+	<div style = "position: absolute; left: 0; width: 700px; height: 70px;">
+		<a href="/"><img style="width: 160px; height: 70px;" src="../assets/img/logo.png"></a></div>
+	<div style="margin-right: 22px;"><a href="/explore">EXPLORE</a> | <a href="/exhibitions">EXHIBITIONS</a></div>
+</div>
+
+    <div class = "maincontent">
+      <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Carousel</title>
+<style>
+  .carousel-container {
+    max-width: 500px;
+    margin: auto;
+    margin-bottom: 15px;
+    position: relative;
+    display: block;
+    cursor: pointer;
+  }
+  .carousel-slide {
+    width: auto;
+    max-width: 500px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    height: auto;
+    transition: opacity 1s ease-in-out;
+  }
+  .carousel-slide.active {
+    position: absolute;
+    max-width: 500px;
+    height: auto;
+    transition: opacity 1s ease-in-out;
+    top: 0;
+    left: 0;
+    opacity: 1;
+  }
+
+  .carousel-arrow-left {
+    left: 0;
+    position: absolute;
+    width: 100px;
+    height: 500px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  .carousel-arrow-right {
+    right: 0;
+    position: absolute;
+    width: 100px;
+    height: 500px;
+    opacity: 0;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1;
+  }
+
+  .carousel-preview-container {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    overflow: hidden;
+  }
+
+  .carousel-title {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    overflow: hidden;
+  }
+
+  .carousel-preview-image {
+    white-space: pre-line;
+    width: 33%;
+    opacity: 0.5;
+    transition: opacity 0.3s ease-in-out;
+    height: auto;
+    cursor: pointer;
+  }
+
+  .carousel-preview-image-middle {
+    white-space: pre-line;
+    width: 33%;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    height: auto;
+    cursor: pointer;
+  }
+
+  .carousel-preview-image.active {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .carousel-quote {
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.8em;
+    font-style: italic;
+  }
+
+  .main-image {
+    width: 500px;
+    display: inline-block;
+  }
+
+  p {
+    font-size: 1.5em;
+  }
+
+</style>
+</head>
+<body>
+
+  <div class="carousel-title">
+    <h1>STORIES &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;<&nbsp;></h1>
+  </div>
+
+  <div class="carousel-preview-container">
+    <img class = "carousel-preview-image" onclick="updateSlides(currSlide - 1)" id = "previewImg_LEFT" src="">
+    <img class = "carousel-preview-image-middle" id = "previewImg_MID" src="">
+    <img class = "carousel-preview-image" onclick="updateSlides(currSlide + 1)" id = "previewImg_RIGHT" src="">
+  </div>
+  <div class="carousel-container">
+    <img class="carousel-arrow-left" onclick="updateSlides(currSlide - 1)" src="/assets/img/carouselArrow_left.png">
+    <a id = "currentLink" href=""><img class = "main-image" id = "currentSlide" src=""></a>
+    <img class="carousel-arrow-right" onclick="updateSlides(currSlide + 1)" src="/assets/img/carouselArrow_right.png">
+  </div>
+
+  <div class="carousel-quote">
+    <p id="currentQuote"></p>
+  </div>
+
+  <div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+      exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+      dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+      exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+      dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+      exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+      dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </div>
+
+  <script>
+      let slides = document.querySelectorAll('.carousel-slide');
+      let previewImages = document.querySelectorAll('.carousel-preview-image');
+      let carouselContainer = document.querySelector('.carousel-container');
+      let leftArrow = document.querySelector('.carousel-arrow-left');
+      let rightArrow = document.querySelector('.carousel-arrow-right');
+      let currSlide = 0;
+      let transitioning = false;
+      let protagonistJSON = '{ "protagonists": [' +
+      '{"name":"Cindy Julaton", "img_source":"/assets/img/cindyJulaton_pres.jpg", "link":"/stories/cindyjulaton", "quote":"Cindy\'s Quote"},' +
+    '{"name":"Olivier Gutknecht", "img_source":"/assets/img/olivierGutknecht_pres.jpg", "link":"/stories/oliviergutknecht", "quote":"Olivier\'s Quote"},' +
+    '{"name":"Joanne Hall", "img_source":"/assets/img/joanneHall_pres.jpg", "link":"/stories/joannehall", "quote":"Joanne\'s quote"},' +
+    '{"name":"Darren Gale", "img_source":"/assets/img/darrenGale_pres.jpg", "link":"/stories/darrengale", "quote":"Darren\'s quote"},' +
+    '{"name":"David Fleming", "img_source":"/assets/img/davidFleming_pres.jpg", "link":"/stories/davidfleming", "quote":"David\'s Quote"} ]}';
+
+    let jsonList = JSON.parse(protagonistJSON);
+
+    carouselContainer.addEventListener('mousemove', function(event) {
+      const containerWidth = carouselContainer.offsetWidth;
+      const mouseX = event.clientX - carouselContainer.getBoundingClientRect().left;
+      
+      if (mouseX <= containerWidth / 4) {
+        leftArrow.style.opacity = '0.5';
+        rightArrow.style.opacity = '0';// Adjust opacity when mouse is on the left side
+      } else if (mouseX >= containerWidth * 0.75) {
+        rightArrow.style.opacity = '0.5';
+        leftArrow.style.opacity = '0'; // Hide left arrow when mouse is on the right side
+      } else {
+        rightArrow.style.opacity = '0';
+        leftArrow.style.opacity = '0';
+      }
+      });
+
+    carouselContainer.addEventListener('mouseleave', function() {
+      leftArrow.style.opacity = '0';
+      rightArrow.style.opacity = '0';
+    });
+
+    function updateSlides(indexNum){
+      if (indexNum == 5) {
+        indexNum = 0;
+      } else if (indexNum == -1) {
+        indexNum = 4;
+      }
+      currSlide = indexNum;
+      console.log(currSlide);
+      document.getElementById("currentSlide").src = jsonList.protagonists[indexNum].img_source;
+      document.getElementById("currentQuote").innerHTML = jsonList.protagonists[indexNum].quote;
+      document.getElementById("previewImg_MID").src = jsonList.protagonists[indexNum].img_source;
+      document.getElementById("currentLink").href = jsonList.protagonists[indexNum].link;
+      if (indexNum == 0) {
+        document.getElementById("previewImg_LEFT").src = jsonList.protagonists[4].img_source;
+      } else {
+        document.getElementById("previewImg_LEFT").src = jsonList.protagonists[indexNum - 1].img_source;
+      }
+      if (indexNum == 4) {
+        document.getElementById("previewImg_RIGHT").src = jsonList.protagonists[0].img_source;
+      } else {
+        document.getElementById("previewImg_RIGHT").src = jsonList.protagonists[indexNum + 1].img_source;
+      }
+    };
+
+    function getRandomInt(min, max) {
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
+    };
+
+    let startingSlide = getRandomInt(0, 5);
+    updateSlides(startingSlide);
+
+    document.getElementById("currentSlide").onClick = function() {updateSlides(currSlide + 1)};
+    leftArrow.onClick = function() {console.log("click")};
+    rightArrow.onClick = function() {updateSlides(currSlide + 1)};
+
+  </script>
+  
+      
+
+    </div>
+  </body>
+</html>

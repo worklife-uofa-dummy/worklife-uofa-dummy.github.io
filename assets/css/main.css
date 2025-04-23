@@ -1,0 +1,65 @@
+:root {
+    --sidebar_width: 35%;
+    --headerbar_height: 70px;
+}
+
+.sidebar{
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: var(--sidebar_width); /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #ffffffd8; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    font-size: 1.5em;
+}
+
+.sidebar a {
+    text-decoration: none;
+    font-size: 1em;
+    color: #6a9cc5;
+    display: block;
+  }
+
+.sidebar p {
+    margin-left: 5%;
+}
+
+.sidebar h1 {
+    margin-left: 5%;
+}
+
+.sidebar h2 {
+    margin-left: 5%;
+}
+
+.headerbar {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: right;
+    z-index: 1;
+    top: 0;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: var(--headerbar_height);
+    font-size: 2.5em;
+}
+
+
+.headerbar a {
+    color: #6a9cc5;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.maincontent{
+    margin-left: var(--sidebar_width);
+    margin-top: var(--headerbar_height);
+    background-color: #ffffffd8;
+}
+
+h1 {
+    font-size: 3em;
+}

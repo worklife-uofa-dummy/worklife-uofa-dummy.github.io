@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="Document type"
+ class="staticSearch_desc" content="Poems"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <meta charset="utf-8"></meta>
+    <meta name="Location" class="staticSearch_feat" content="Ontario"></meta>
+    <meta name="Occupation" class="staticSearch_feat" content="Education"></meta>
+    <meta name="City" class="staticSearch_feat" content="Scarborough"></meta>
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'></link>
+    <title>Darren Gale</title>
+    <link rel="stylesheet" href="/assets/css/main.css"></link>
+    <style>
+       /* Style the Image Used to Trigger the Modal */
+
+
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1; 
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.9); 
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-height: 82%;
+}
+
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+  font-size: 2.3em;
+}
+.captionbox {
+  display: flex;
+  max-width: 1200px;
+  margin: auto;
+  min-width: 10%;
+}
+.captions {
+  width: 60%;
+  text-align: center;
+  font-size: 1.6em;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+} 
+  body {
+          font-family: 'Abel';font-size: 14px;
+  }
+  .images {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  .stickyTest {
+    position: sticky;
+    top: 0;
+  }
+  .headerImg {
+    white-space: pre-line;
+    width: 50%;
+    margin-right: 5px;
+    transition: opacity 0.3s ease-in-out;
+    height: auto;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+
+  #img_prev:hover {opacity: 0.7;}
+  #img_pres:hover {opacity: 0.7;}
+
+  .titlebar {
+    margin-bottom: 5px;
+    margin-top: 76px;
+    font-size: 2.3em;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+  }
+  .content {
+    margin-top: 30px;
+    margin: auto;
+    max-width: 1200px;
+    font-size: 1.4em;
+    text-align: justify;
+    margin-bottom: 75px;
+  }
+  .playButton {
+    max-width: 42px;
+    border: none;
+    background: none;
+    padding: 0;
+  }
+  .playButton:hover {
+    opacity: 70%;
+    cursor: pointer;
+  }
+
+      </style>
+  </head>
+
+  <body>
+    
+    <head>
+  <link rel="stylesheet" href="/assets/css/main.css"></link>
+</head>
+<div class = "headerbar">
+	<div style = "position: absolute; left: 0; width: 700px; height: 70px;">
+		<a href="/"><img style="width: 160px; height: 70px;" src="../assets/img/logo.png"></a></div>
+	<div style="margin-right: 22px;"><a href="/explore">EXPLORE</a> | <a href="/exhibitions">EXHIBITIONS</a></div>
+</div>
+
+    
+    <div class = "titlebar">Darren Gale</div>
+    <div class = "images">
+      <img id = "img_prev" class = "headerImg" src = "../assets/img/darrenGale_prev.jpg" alt = "Caption for this image"></img>
+      <img id = "img_pres" class = "headerImg" src = "../assets/img/darrenGale_pres.jpg" alt = "Caption for this image"></img>
+    </div>
+    <div id="modalOverlay" class="modal">
+      <span class="close">X</span>
+      <img class="modal-content" id="modal_img"></img>
+      <div id="caption"></div>
+    </div>
+    <div class = "captionbox">
+      <div class = "captions">Occupation, year, and location for this image</div>
+      <div class = "captions">Occupation, year, and location for this image</div>
+    </div>
+    <div class = "content">
+    <style>
+
+  .blockQuote {
+    margin-left: 62px;
+    margin-right: 62px;
+    font-weight: bold;
+    font-style: italic;
+  }
+    .quoteContainer {
+      position: relative;
+    }
+
+    .progress-container {
+      position: absolute;
+      width: 43px;
+      height: 43px;
+      border-radius: 50%;
+      background: conic-gradient(#3498db 0%, #e4e4e4 0%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+	.progress-container:hover {
+		cursor: pointer;
+	}
+  </style>
+
+<meta name="Location" class="staticSearch_feat" content="Alberta - South" />
+
+<meta name="Occupation" class="staticSearch_feat" content="Industrial" />
+
+<meta name="City" class="staticSearch_feat" content="Lethbridge" />
+
+<h1 id="darrens-story">Darren’s Story</h1>
+
+<p>Darren pulls his two calloused oil-streaked hands from under the hood of a car, holds them palms out, and says, “I like to do.” His hands are his livelihood, so “you have to take care of them,” but more than this, they are a connection to his customers. Working on their cars to provide good service and keep them safe creates a relationship that is, for him, the greatest satisfaction of being a mechanic at Downtown Gas and Auto. The predictable daily routine, which he has been doing for almost thirty years at the same small and thriving family business, also keeps him grounded and focused.</p>
+
+<p>At the same time, it’s not a one-note job: “every day is different, same but different,” as he learns “little tricks” for servicing and repairing cars. That doesn’t mean it has all been easy. Darren wonders if long workdays—and sometimes weekends—contributed to a life-threatening coronary incident several years ago. The experience was something of a wakeup call for him and his colleagues in a demanding work environment: “I came back and the hours came down a little bit. Because I was told not to work longer than nine hours. Doctor’s orders.”</p>
+
+<p>Darren and his brother were raised by a single father. “We sort of took care of ourselves because he wasn’t home all the time.” He learned from these early experiences that “stress kills,” and despite early warnings from his father, he took on manual work: “My dad said ‘don’t.’ He goes ‘get a job where your hands don’t get dirty.’ [But] I don’t want to be in an office and go look at four walls.”</p>
+
+<p>While still a teenager, Darren got a job through a family friend at Maple Leaf Gardens, cleaning up after concerns, games, or conventions. He recalls slipping in the back door for the last hour of a couple of good concerts before his shift started. After high school he studied at Danforth Technical Institute, pumping gas to support himself. Soon after finishing at Danforth, Darren started working at Downtown Gas and Auto—on a handshake—and never left:</p>
+
+<div class="quoteContainer">
+
+<div class="progress-container" id="progressContainer" onclick="fadeoutAudio('ambience01', 'interviewClip01');"><img id="playButton" style="z-index: -1;" class="playButton" src="../assets/img/play.png" /></div>
+
+<div class="blockQuote">
+I started here before you had to fill out an application. It was a handshake. Not even a thought about resumes. Like it was that long ago. It was a: ‘Hey, you want a job? Hey, you want to work? Yeah. Okay, great. See you Monday.’ That's when it started for me . . . and I just never felt like I needed to leave and go somewhere else . . . [I have] a good relationship with the family . . . they’ve always been great to me, treated me well. And I respect them.*
+</div>
+<audio src="../assets/audio/interviewPlaceholder.wav" id="interviewClip01"></audio>
+</div>
+
+<p><strong>(This is a placeholder interview clip and does not match the above quote)</strong>.</p>
+
+<p>Darren had worked a year at another automotive center and so knew his “way around the tire machine, the bouncer, brakes.” Otherwise, he learned everything on the job at Downtown Gas and Auto. Over the years he asked questions and traded ideas with his bosses and colleagues as they worked side-by-side in the three auto bays or as they moved between the bays, the small side office, and the outside yard:</p>
+
+<blockquote>
+  <h4 id="different-people-different-cars-you-know-just-some-things-that-are-new-you-know-you-learn-something-to-try-if-somebody-doesnt-know-something-hey-come-look-at-this-howd-you-figure-it-out-oh-i-did-this-and-i-did-this-okay-and-you-teach-somebody-else-you-know-teaching-car-stuff-little-tricks-that-you-learn"><em>Different people, different cars. You know, just some things that are new, you know, you learn something to try, if somebody doesn’t know something, ‘Hey, come look at this. How’d you figure it out?’ ‘Oh, I did this and I did this.’ Okay. And you teach somebody else, you know, teaching car stuff, little tricks that you learn.</em></h4>
+</blockquote>
+
+<p>Some people, says Darren, love this work because they care about cars. But for him, it’s about fixing a variety of problems for people “involved in all walks of life,” and customizing to their needs and what they can afford:</p>
+
+<blockquote>
+  <h4 id="and-i-like-to-help-them-you-know-bring-down-a-car-ill-give-you-a-five-minute-lesson-this-is-your-brake-fluid-this-is-your-windshield-washer-fluid-this-is-your-wand-you-check-it-with-the-motor-off-wipe-it-clean-with-paper-back-in-two-seconds-pull-it-out-have-a-look-it-should-be-between-here-and-here-transmission-you-check-it-with-it-running-washer-fluid-pump-it-up-in-the-winter-before-you-go-anywhere-you-dont-want-to-run-out-on-the-highway-and-things-like-that-thats-what-makes-me-feel-good-is-helping-you-know-its-not-fixing-its-talking-to-the-people-just-respect-treating-them-respectfully"><em>And I like to help them, you know. Bring down a car, I’ll give you a five-minute lesson. This is your brake fluid. This is your windshield washer fluid. This is your wand. You check it with the motor off. Wipe it clean with paper. Back in two seconds, pull it out, have a look. It should be between here and here. Transmission, you check it with it running. Washer fluid, pump it up in the winter before you go anywhere. You don’t want to run out on the highway. And things like that. That’s what makes me feel good is helping. You know? It’s not fixing. It’s talking to the people. Just respect. Treating them respectfully.</em></h4>
+</blockquote>
+
+<p>As Darren does a final check of the oil level and the tire pressure on a car, he says he doesn’t know how they operate at other shops—they might just close the hood and park the car, for all he knows—but “it’s just a little thing that we do extra.” Besides, he says with a wry smile, he wants to avoid having the boss ask him if has taken care of those little extras. Darren recognizes that this kind of attention and reputation are important to the survival of the family business, especially against the backdrop of a dealer-dominated landscape and a general mistrust of smaller shops. He likes that he works at a place that won’t pressure you into an expensive repair. “You don’t need it? Don’t do it. I think that’s one of the reasons why this one is still open.”</p>
+
+<p>HHaving worked at Downtown Gas and Auto for thirty years, Darren has seen how difficult running a family business can be as family members work things out and try to keep things thriving. He says that if he worked with his brother, “it’d be one of us in jail, or the both of us in jail.” So, he admires his bosses. He is also concerned for the stress that running the business can cause for both owners and employees.</p>
+
+<p>As a salaried employee in a family business, Darren sees tradeoffs. On the one hand, he doesn’t have to worry about flat rate pay for a specific task, like at some shops. Instead, he’s available and involved in the range of things that need to get done, whether it’s washing a car or pulling weeds around the back of the shop: “If he gives me a job to do, I’ll do that.” On the other hand, the expectations around working hours can sort of creep up:</p>
+
+<blockquote>
+  <h4 id="if-youre-working-the-boss-wont-tell-you-you-know-what-its-getting-late-leave-it-hell-just-let-you-work----because-we-also-do-used-car-sales-and-back-then-we-didnt-have-time-during-the-day-monday-to-friday-to-get-the-cars-to-work-so-we-would-do-it-on-saturdays"><em>If you’re working, the boss won’t tell you, ‘You know what, it’s getting late, leave it.’ He’ll just let you work . . . Because we also do used car sales. And back then we didn’t have time during the day, Monday to Friday, to get the cars to work. So we would do it on Saturdays.</em></h4>
+</blockquote>
+
+<p>Then came Darren’s two health scares. As he puts it: “I got seven lives left now because I’ve used up two of them. Heart failure and COVID, yeah.” Sometime in 2017 or 2018, Darren found himself losing sleep and running out of breath. Then one day at work he just started bloating up, and when he went to see the doctor, he was immediately hospitalized with heart failure and told he was within weeks of being dead. Ten months later he was cleared to go back to work. After that, there was some adjustment to hours at work.</p>
+
+<p>COVID affected work for Darren in more ways than one. Contracting the virus meant he was off work for over a month—first in the ICU, then at home—with respiratory, bowel, and hallucination problems. As for the business itself, Downtown Gas and Auto was considered “essential” and so closed to customers for just a short while. During this time, Darren’s employers kept staff on, taking the opportunity to carry out work around the shop, painting and renovating. When they did re-open, business stayed relatively steady; people seemed to have more time and flexibility to bring in their cars while working from home.</p>
+
+<p>Darren returned to work after his health issues with a new attitude and routine. Now, even when there is stress around him, he has become more “whatever, man, don’t worry about it, we’ll get this done.” And even though he lives just five blocks away, he drives to work so he can “get away” to sit by the lake and eat his healthy lunch. “I just sit there and look at the loons, the geese, the swans.”</p>
+
+<p>Darren has always made time outside of work for his family. Speaking of his wife, he says “I am all hers when I get home, and on weekends.” Darren once again displays his greasy hands, this time to say that his wife “knew what she was getting into” when they met twenty-some years ago. After an injury a number of years ago, she is on disability, so Darren takes care of all the cooking and cleaning at home. Speaking of his daughter, who was two when he met his wife, Darren says, “I raised her as number one person in the world. I’d do anything, go anywhere.” He recalls two deeply moving moments, one when she asked if she could call him dad and the other when she said she wouldn’t marry without his approval. Darren pulls out his phone to show a picture of his new grandchild.</p>
+
+<p>Even so, work is “like a second home” to Darren, a place where he could close his eyes and still find his way around. It is this familiarity, and the enjoyment of work, that keeps him going.</p>
+
+<blockquote>
+  <h4 id="when-im-home-not-working-i-dont-know-what-day-it-is-and-what-time-it-is----like-even-a-three-day-weekend-like-this-past-long-weekend-i-was-like-i-dont-know-what-to-do-because-ive-just-been-going-getting-up-and-going-to-work-for-so-long-already-like-i-just-turned-51-this-year-and-its-like-i-still-feel-like-i-can-go-just-keep-goingi-enjoy-coming-to-work-i-have-fun-and-i-dont-know-what-it-is-but-thats-how-i-feel-inside-and-i-feel-youngyouve-got-to-enjoy-your-job-enjoy-going-to-work-and-i-do-but-its-what-you-make-it-you-can-go-to-work-every-day-and-be-upset-be-angry-but-its-like-you-know-what-why-even-go-to-work-change-your-profession-a-lot-of-people-are-angry-about-their-jobs-what-do-you-keep-doing-it-for-then"><em>When I’m home not working, I don’t know what day it is and what time it is . . . Like, even a three-day weekend, like this past long weekend, I was like, I don’t know what to do. Because I’ve just been going, getting up and going to work for so long already. Like I just turned 51 this year. And it’s like, I still feel like I can go, just keep going….I enjoy coming to work. I have fun. And I don’t know what it is. But that’s how I feel inside. And I feel young…You’ve got to enjoy your job, enjoy going to work. And I do. But it’s what you make it. You can go to work every day and be upset, be angry. But it’s like you know what, why even go to work? Change your profession. A lot of people are angry about their jobs. What do you keep doing it for then?</em></h4>
+</blockquote>
+
+<p>That doesn’t mean being an auto technician is for everyone. Darren can imagine his daughter driving a transport truck before he can see her repairing cars. “I can’t see her getting her hands into this. Yeah, okay, [I guess] you can always wear gloves.” When “co-op kids” used to come through the shop, Darren would try to convey the pros and cons of the work:</p>
+
+<blockquote>
+  <h4 id="i-tell-them-its-good-its-fun-you-know-you-learn-a-lot-and-you-can-save-money-by-fixing-your-own-cars-but-i-also-said-its-demanding-i-said-its-hard-on-your-knees-up-and-down-setting-up-cars-up-and-down-squat-down-under-dashes-and-trunks-and-if-its-something-that-you-want-to-do-sure-go-buy-tools-thats-80000-maybe"><em>I tell them it’s good, it’s fun. You know, you learn a lot. And you can save money by fixing your own cars. [But I also] said it’s demanding. I said it’s hard on your knees. Up and down, setting up cars, up and down, squat down under dashes and trunks. And if it’s something that you want to do, sure, go buy tools. That’s $80,000 maybe?</em></h4>
+</blockquote>
+
+<p>The last couple of years, Darren says, Downtown Auto stopped taking co-op students because “they just don’t last.”</p>
+
+<p>For the most part, Darren is happy with his “simple life.” He talks about the family cottage north of Toronto that his dad bought when he was 16 years old, a place where he still goes on weekends.</p>
+
+<blockquote>
+  <h4 id="i-can-sit-on-that-dock-and-watch-water-go-by-watch-them-boats-go-by-i-got-no-problems-with-that-im-not-a-high-maintenance-guy-this-is-who-i-am-i-dont-need-to-go-anywhere-it-cost-me-money-to-go-somewhere-thousands-of-dollars-to-go-places-you-know-what-i-value-my-money-more-than-spending-4000-to-go-on-a-nine-day-cruise-6000-on-a-10-day-cruise-id-spend-150-in-gas-to-go-out-to-the-cottage-for-a-weekend-or-to-take-a-week-off-its-gonna-cost-me-food-money-and-gas-money-for-the-boat-im-okay-with-that"><em>I can sit on that dock and watch water go by, watch them boats go by. I got no problems with that. I’m not a high maintenance guy. This is who I am. I don’t need to go anywhere. It cost me money to go somewhere. Thousands of dollars to go places. You know what? I value my money more than spending $4,000 to go on a nine-day cruise, $6,000 on a 10-day cruise. I’d spend $150 in gas to go out to the cottage for a weekend or to take a week off. It’s gonna cost me food money and gas money for the boat. I’m okay with that</em></h4>
+</blockquote>
+
+<p>He hopes he can continue in this vein when he retires, with “a lot of water, a lot of pretty blue skies up north.” Getting there is another matter. He’s not sure when he can afford to retire, and the idea of leaving the routine of work makes him nervous, especially after he saw his own father struggle to adjust after retiring early. “Things catch up with you” when you’re not active, just sitting with a remote. “I’ll just keep going, as long as I’m able to do it. That’s fine.”</p>
+
+
+    <a href="#">Back to top</a>
+    </div>
+    <head>
+    <link rel="stylesheet" href="/assets/css/main.css"></link>
+    <style>
+    .bottombar {
+        width: 100%;
+        max-height: 60px;
+        position: fixed;
+        z-index: 1;
+        bottom: 0;
+        font-size: 1.5em;
+        background-color: #fff;
+        transition: 0.3s;
+    }
+    .audioContainer {
+      width: 100%;
+      background-color: #ffeed862;
+      display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        height: 60px;
+    }
+    .metadata { 
+      margin-left: 25px;
+      font-size: 1.2em;
+      margin-top: -20px;
+    }
+    .tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Tooltip text */
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+  
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+  
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  /* Tooltip arrow */
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  .imageTooltip {
+      width: 44px;
+      height: 44px;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+</style>
+</head>
+
+<div class = "bottombar" id = "bottomBar">
+<div class = "audioContainer">
+        <div style="padding: 5px;"><h2>Ambiences</h2></div>
+        <div style = "padding: 5px; margin-top: 8px;"><audio controls = "true" src = "../assets/audio/darrenGale_pres.wav" id = "ambience01"></audio></div>
+        <div class = "tooltip"><img class = "imageTooltip" src = "../assets/img/infoTooltip.png" alt = "Caption for image 1"></img><span class="tooltiptext">Information tooltip about the audio. Information tooltip about the audio. Information tooltip about the audio.</span></div>
+</div>
+</div>
+
+    <script>
+      // Get the modal
+      var modal = document.getElementById("modalOverlay");
+      var modalImg = document.getElementById("modal_img");
+      var bottomBar = document.getElementById("bottomBar");
+      
+      // Get the image and insert it inside the modal - use its "alt" text as a caption
+      var img1 = document.getElementById("img_prev");
+      var captionText1 = document.getElementById("caption");
+      img1.onclick = function(){
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText1.innerHTML = this.alt;
+        bottomBar.style.opacity = 0;
+      }
+      var img2 = document.getElementById("img_pres");
+      var captionText2 = document.getElementById("caption");
+      img2.onclick = function(){
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText2.innerHTML = this.alt;
+        bottomBar.style.opacity = 0;
+      }
+      
+      
+      var curr_span = document.getElementsByClassName("close")[0];
+      
+      curr_span.onclick = function() { 
+        modal.style.display = "none";
+        bottomBar.style.opacity = 1;
+      }
+      </script>
+  <script>
+    // Select elements
+    const audio = document.getElementById("interviewClip01");
+    const progressContainer = document.getElementById("progressContainer");
+
+    // Update progress function
+    function updateProgress() {
+      const progress = (audio.currentTime / audio.duration) * 100 || 0;
+      const angle = `${progress}%`;
+      
+      // Update the circular progress
+      progressContainer.style.background = `conic-gradient(rgba(197, 197, 197, 0.77) ${angle},rgba(228, 228, 228, 0) ${angle})`;
+    }
+
+    // Event listeners
+    audio.addEventListener("timeupdate", updateProgress);
+    audio.addEventListener("loadedmetadata", updateProgress); // Initial update
+  </script>
+
+  <script>
+	var currentlyPlaying = false;
+  var playButton = document.getElementById("playButton");
+	function fadeoutAudio(ambience, interviewClip) {
+		console.log(currentlyPlaying);
+		if (currentlyPlaying == false) {
+			if (interviewClip == "interviewClip01") {
+				currentlyPlaying = true;
+        playButton.src = "../assets/img/stop.png";
+			}
+			var interviewSound = document.getElementById(interviewClip);
+			var ambientSound = document.getElementById(ambience);
+			var interval = 25;
+			var ambVol = ambientSound.volume;
+			var clipVol = 0;
+			var clipPlaying = false;
+			var fadeout = setInterval(
+			function() {
+				if (ambientSound.volume - 0.01 > 0 ) {
+					ambientSound.volume -= 0.01;
+					ambVol -= 0.01;
+					if (ambVol < 0.9 && clipPlaying == false) {
+						interviewSound.volume = clipVol;
+						clipPlaying = true;
+						if (interviewClip == "interviewClip01") {
+							interviewSound.play();
+						}
+					}
+				}
+				if (ambVol < 0.9 && clipPlaying == true && clipVol + 0.01 < 0.9) {
+						clipVol += 0.01;
+						interviewSound.volume = clipVol;
+				}	
+				else if (ambientSound.volume <= 0.1 && clipVol > 0.88) {
+					clearInterval(fadeout);
+				}
+			}, interval);
+		}
+    else if (currentlyPlaying == true) {
+      interviewSound = document.getElementById(interviewClip);
+      interviewSound.currentTime = interviewSound.duration - 0.01;
+      playButton.src = "../assets/img/play.png";
+    }
+	}
+
+</script>
+
+<script>
+var interviewSound = document.getElementById('interviewClip01');
+var ambientSound = document.getElementById('ambience01');
+var playButton = document.getElementById("playButton");
+interviewSound.onended = function () {
+	interviewSound.currentTime = 0;
+	currentlyPlaying = false;
+	console.log("audio complete");
+	fadeoutAudio('interviewClip01', 'ambience01');
+  playButton.src = "../assets/img/play.png";
+}
+</script>
+
+  </body>
+</html>
