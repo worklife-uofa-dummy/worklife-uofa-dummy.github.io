@@ -57,6 +57,12 @@ header .nav-right a {
   transition: color 0.3s ease; /* smooth fade */
 }
 
+.currentLink {
+  color:brown;
+  text-decoration: underline;
+}
+
+
 header nav a:hover,
 header .nav-right a:hover {
   color: #9b9b9b; /* lighter grey on hover */
@@ -82,7 +88,7 @@ header .nav-right {
 }
 
 .hero h2 {
-    color:rgb(133, 0, 0);
+    color:brown;
     font-weight: normal;
     margin-bottom: 5px;
 }
@@ -150,7 +156,9 @@ header .nav-right {
 }
 
 .explore-btn {
-  margin-top: 20px;
+  display: inline-block;   /* ensure it participates in normal layout */
+  margin-top: 22px;        /* or whatever spacing you need */
+  position: relative;      /* ensures margin works properly */
   padding: 12px 25px;
   border: 1px solid #333;
   background: #fff;
@@ -158,11 +166,18 @@ header .nav-right {
   transition: background 0.3s;
   border-radius: 3px;                 /* rounded corners */
   box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* subtle shadow */
+  text-decoration: none;        /* removes underline */
+  color: inherit;               /* uses your custom text color */
+  outline: none;  
 }
 
 .explore-btn:hover {
   background: #f0f0f0;
   box-shadow: 0 6px 16px rgba(0,0,0,0.2); /* slightly stronger shadow on hover */
+}
+
+.explore-btn:visited {
+  color: inherit;
 }
 
 /* About Section */
@@ -285,6 +300,372 @@ header .nav-right {
 }
 
 
+/* stories */
+
+.stories-section {
+  text-align: center;
+  padding: 80px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stories-section h1 {
+  font-size: 2rem;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.stories-section .intro {
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto 60px;
+  line-height: 1.6;
+}
+
+.stories-grid {
+  display: grid;
+  margin-top: -10px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2px;
+}
+
+.story-card {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  aspect-ratio: 1 / 1;
+}
+
+.story-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.story-card .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(109, 109, 109, 0.6);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.story-card:hover .overlay {
+  opacity: 1;
+}
+
+/* Audio Bar */
+
+
+
+.audio-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 5%; /* create same inset as header border */
+  right: 5%;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.story-footer {
+  padding-bottom: 110px;
+}
+
+.audio-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 0;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+#audio-bar.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Disabled / frozen state for the audio bar */
+.audio-bar.disabled .play-pause,
+.audio-bar.disabled .visualizer {
+  opacity: 0.4;
+  pointer-events: none; /* prevent interaction */
+  transition: opacity 0.3s ease;
+}
+
+/* Freeze visualizer bars */
+.audio-bar.disabled .visualizer div {
+  animation: none !important;
+  transform: scaleY(1) !important;
+  transition: transform 0.2s ease;
+}
+
+/* Dim + disable only the play/pause and visualizer when a clip is active */
+.audio-bar.clip-active .play-pause,
+.audio-bar.clip-active .visualizer {
+  opacity: 0.45;
+  pointer-events: none;             /* prevents clicks on the visualizer; play-pause disabled */
+  transition: opacity 0.28s ease;
+}
+
+/* Make visualizer bars appear greyed out */
+.audio-bar.clip-active .visualizer div {
+  background: #bdbdbd;              /* grey bars */
+  opacity: 0.6;
+  transition: background-color 0.28s ease, opacity 0.28s ease, transform 0.5s ease;
+}
+
+/* If you want the play/pause icon itself to change color too */
+.audio-bar.clip-active .play-pause svg {
+  color: #777;                      /* applies to svg with currentColor or use filter if needed */
+}
+
+/* Optional: subtle desaturate of the play icon if svg colors are baked in */
+.audio-bar.clip-active .play-pause {
+  filter: grayscale(80%);
+}
+
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+/* Play/Pause Button Styling */
+.play-pause {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a30000;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.play-pause:hover {
+  background: #eeeeee;
+}
+
+/* Visualizer */
+.visualizer {
+  display: flex;
+  align-items: center; /* center baseline for middle animation */
+  gap: 4px;
+  height: 30px;
+  position: relative;
+}
+
+.visualizer div {
+  width: 5px;
+  height: 8px;
+  background: #a30000;
+  border-radius: 4px;
+  opacity: 0.8;
+  transition: height 0.3s ease, opacity 0.3s ease; /* smooth fade */
+  transform-origin: center center;
+}
+
+/* Story page */
+
+.person-page {
+  text-align: center;
+  margin: 60px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.person-name {
+  font-family: 'Abel', serif;
+  font-size: 3rem;
+  color: #353535;
+  margin-bottom: 20px;
+}
+
+.photo-pair {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2px;
+  flex-wrap: wrap;
+}
+
+.photo-item {
+  text-align: center;
+  flex: 1 1 300px;
+}
+
+.photo-item img {
+  width: 100%;
+  max-width: 562px;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.photo-item img:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
+
+.photo-caption {
+  font-size: 1.1rem;
+  color: #777;
+  margin-top: 10px;
+}
+
+/* Story section */
+.story-section {
+  text-align: left;
+  max-width: 750px;
+  margin: 30px auto 50px;
+  color: #333;
+  font-size: 1.05em;
+}
+
+.story-section h2 {
+  font-weight: 600;
+  font-size: 2rem;
+  color: #1b1b1b;
+  margin-bottom: 15px;
+}
+
+/* Modal styling */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  padding-top: 80px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9); 
+}
+
+.modal-content {
+  display: block;
+  margin: auto;
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 4px;
+  box-shadow: 0 0 30px rgba(255,255,255,0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+#caption {
+  margin: 20px auto;
+  text-align: center;
+  color: #ccc;
+  font-size: 0.95rem;
+}
+
+.close {
+  position: absolute;
+  top: 40px;
+  right: 60px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: #bbb;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* INTERVIEW CLIPS */
+
+.story-quote {
+  margin-left: 62px;
+  margin-right: 62px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.quoteContainer {
+  position: relative;
+}
+
+.clip-btn {
+  margin-top: -60px;
+  position: absolute;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(-90deg); /* start progress at top */
+}
+
+.ring-bg {
+  fill: none;
+  stroke: #ddd;
+  stroke-width: 3;
+}
+
+.ring-progress {
+  fill: none;
+  stroke: #555;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 125.6; /* 2 * Math.PI * r (r = 20) */
+  stroke-dashoffset: 125.6;
+  transition: stroke-dashoffset 0.15s linear;
+}
+
+.clip-icon {
+  position: relative;
+  z-index: 2;
+  color: #222;
+  width: 24px;
+  height: 24px;
+}
+
+.clip-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
 
 
 /* Footer */
@@ -296,7 +677,7 @@ footer {
 }
 
 .footer-links {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .footer-links a {
