@@ -323,6 +323,36 @@ header .nav-right {
   line-height: 1.6;
 }
 
+.stories-section .intro2 {
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto 60px;
+  line-height: 1.6;
+  font-size: 1.5em;
+}
+
+.stories-section .intro2 a {
+  text-decoration: none;
+  color: #333;
+  font-weight: normal;
+  transition: color 0.3s ease; /* smooth fade */
+}
+
+.stories-section .intro2 .currentExplore {
+  text-decoration: underline;
+  color: brown;
+}
+
+.stories-section .intro2 a:hover {
+  color: #9b9b9b; 
+}
+
+.stories-section .filler {
+  color: #303030;
+  font-weight: normal;
+  font-size: 1.5em;
+}
+
 .stories-grid {
   display: grid;
   margin-top: -10px;
@@ -666,6 +696,233 @@ header .nav-right {
   height: 100%;
 }
 
+/*** EXPLORE PAGE ***/
+
+.explore-grid {
+  display: grid;
+  margin-top: -30px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2px;
+  max-width: 1200px;
+}
+
+.explore-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.explore-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.explore-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(109, 109, 109, 0.6);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  text-align: center;
+}
+
+.explore-item:hover .explore-overlay {
+  opacity: 1;
+}
+
+.explore-overlay h3 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.explore-overlay p {
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+  letter-spacing: 1px;
+}
+
+.explore-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 2rem 1rem;
+}
+
+/* --- Modal Content --- */
+.explore-modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  color: white;
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.explore-close {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
+}
+
+.explore-carousel {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  overflow: visible; /* ✅ allow image to define its own height */
+  background: transparent;
+}
+
+/* --- Track --- */
+.explore-carousel-track {
+  position: relative;
+  width: 100%;
+  display: block; /* ✅ not flex: let images size themselves */
+}
+
+/* --- Slide --- */
+.explore-slide {
+  display: none;
+  text-align: center;
+  transition: opacity 0.4s ease;
+}
+
+.explore-slide.active {
+  display: block;
+  opacity: 1;
+}
+
+.explore-slide img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 80vh; /* ✅ always fits within screen but keeps full aspect ratio */
+  object-fit: contain;
+  margin: 0 auto;
+  border: 4px solid #000;
+  background: #222;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+}
+
+#explore-caption,
+.explore-slide-caption {
+  margin-top: 10px;
+  font-size: 1.3rem;
+  color: #eee;
+  min-height: 1.2em;    /* reserve vertical space so caption area doesn't jump */
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.explore-prev,
+.explore-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: #aaa;
+  cursor: pointer;
+  user-select: none;
+  z-index: 5;
+  background: none;
+  border: none;
+  transition: color 0.2s ease;
+}
+
+/* Keep arrows close to the visible image edges */
+.explore-prev {
+  left: calc(50% - 420px); /* just outside a centered 800px image area */
+}
+
+.explore-next {
+  right: calc(50% - 420px);
+}
+
+.explore-prev:hover,
+.explore-next:hover {
+  color: white;
+}
+
+.explore-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.explore-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #666;
+  transition: background 0.3s ease;
+}
+
+.explore-dot:hover {
+  cursor: pointer;
+}
+
+.explore-dot.active {
+  background: white;
+}
+
+@media (max-width: 768px) {
+  .explore-modal-content {
+    width: 95%;
+  }
+
+  .explore-slide img {
+    max-height: 65vh;
+  }
+
+  .explore-prev {
+    left: 2%;
+  }
+  .explore-next {
+    right: 2%;
+  }
+}
+
+.explore-story-link {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  color: #ccc;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  z-index: 10;
+    opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.explore-modal[style*="display: flex"] .explore-story-link {
+  opacity: 1;
+}
+
+.explore-story-link:hover {
+  color: white;
+  text-decoration: underline;
+}
 
 
 /* Footer */
