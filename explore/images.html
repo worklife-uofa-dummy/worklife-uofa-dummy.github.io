@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work-Life in Canada</title>
+  <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'></link>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="left-group">
+     <div class="logo"><a href="/"><img src="../assets/img/logo.png" alt="Work Life Canada Logo" style="scale: 150%;"></a></div>
+    <nav>
+      <ul>
+        <li><a href="/stories">Stories</a></li>
+        <li><a href="/exhibits">Exhibits</a></li>
+        <li class="currentLink"><a href="/explore/images">Explore</a></li>
+      </ul>
+    </nav>
+    </div>
+    <div class="nav-right">
+      <a href="#">About</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </div>
+</header>
+
+<main class="stories-section">
+  <h1>EXPLORE</h1>
+  <p class="intro2">
+   <a class="currentExplore" href="/explore/images">IMAGES</a>  |  <a href="/explore/sounds">SOUNDS</a>  |  <a href="/explore/people">PEOPLE</a>  |  <a href="/explore/places">PLACES</a>
+  </p>
+
+<!-- === Explore Grid === -->
+<div class="explore-grid">
+  
+  
+    
+      <div class="explore-item" data-person="Abella Garcia">
+        <img src="../assets/img/abellaCGarcia.jpg" alt="Abella Garcia">
+        <div class="explore-overlay">
+          <h3>Abella Garcia</h3>
+          <p>- View -</p>
+        </div>
+      </div>
+    
+  
+    
+      <div class="explore-item" data-person="Brian and Orlanne Coyne">
+        <img src="../assets/img/brian-orlanne-leonieCoyne.jpg" alt="Brian and Orlanne Coyne">
+        <div class="explore-overlay">
+          <h3>Brian and Orlanne Coyne</h3>
+          <p>- View -</p>
+        </div>
+      </div>
+    
+  
+    
+      <div class="explore-item" data-person="Cindy Julaton">
+        <img src="../assets/img/cindyJulaton_pres.jpg" alt="Cindy Julaton">
+        <div class="explore-overlay">
+          <h3>Cindy Julaton</h3>
+          <p>- View -</p>
+        </div>
+      </div>
+    
+  
+    
+      <div class="explore-item" data-person="Darren Gale">
+        <img src="../assets/img/darrenGale_pres.jpg" alt="Darren Gale">
+        <div class="explore-overlay">
+          <h3>Darren Gale</h3>
+          <p>- View -</p>
+        </div>
+      </div>
+    
+  
+    
+      <div class="explore-item" data-person="David Fleming">
+        <img src="../assets/img/davidFleming_pres.jpg" alt="David Fleming">
+        <div class="explore-overlay">
+          <h3>David Fleming</h3>
+          <p>- View -</p>
+        </div>
+      </div>
+    
+  
+    
+      <div class="explore-item" data-person="Joanne Hall">
+        <img src="../assets/img/joanneHall_pres.jpg" alt="Joanne Hall">
+        <div class="explore-overlay">
+          <h3>Joanne Hall</h3>
+          <p>- View -</p>
+        </div>
+      </div>
+    
+  
+    
+      <div class="explore-item" data-person="Olivier Gutknecht">
+        <img src="../assets/img/olivierGutknecht_pres.jpg" alt="Olivier Gutknecht">
+        <div class="explore-overlay">
+          <h3>Olivier Gutknecht</h3>
+          <p>- View -</p>
+        </div>
+      </div>
+    
+  
+</div>
+</main>
+
+<!-- Modal -->
+<div id="explore-modal" class="explore-modal">
+  <div class="explore-modal-content">
+    <span class="explore-close">&times;</span>
+    <h2 id="explore-modal-title"></h2>
+
+<div class="explore-carousel">
+  <button class="explore-prev">&#10094;</button>
+  <div id="explore-carousel-track" class="explore-carousel-track"></div>
+  <button class="explore-next">&#10095;</button>
+</div>
+
+    <!-- single caption element below the carousel -->
+    <p id="explore-caption" class="explore-slide-caption"></p>
+    <div id="explore-carousel-dots" class="explore-carousel-dots"></div>
+    <a id="explore-story-link" class="explore-story-link" href="#" target="_self"></a>
+  </div>
+</div>
+
+
+
+
+<script>
+  window.explorePeople = {
+    
+    
+    "Abella Garcia": {
+      name: "Abella Garcia",
+      firstname: "Abella",
+      url: "/stories/abellaCGarcia.html",
+      images: [
+        
+          {
+            src: "../assets/img/abellaCGarcia.jpg",
+            caption: "Abella's image 1 caption"
+          },
+        
+          {
+            src: "../assets/img/abellaCGarcia_past.jpg",
+            caption: "Abella's image 2 caption"
+          }
+        
+      ]
+    },
+    
+    "Brian and Orlanne Coyne": {
+      name: "Brian and Orlanne Coyne",
+      firstname: "Brian and Orlanne-Leonie",
+      url: "/stories/brian-orlanne-leonieCoyne.html",
+      images: [
+        
+          {
+            src: "../assets/img/brian-orlanne-leonieCoyne.jpg",
+            caption: "Brian and Orlanne's image 1 caption"
+          },
+        
+          {
+            src: "../assets/img/brianCoyne_past.jpg",
+            caption: "Brian and Orlanne's image 2 caption"
+          },
+        
+          {
+            src: "../assets/img/brianCoyne.jpg",
+            caption: "Brian and Orlanne's image 3 caption"
+          }
+        
+      ]
+    },
+    
+    "Cindy Julaton": {
+      name: "Cindy Julaton",
+      firstname: "Cindy",
+      url: "/stories/cindyJulaton.html",
+      images: [
+        
+          {
+            src: "../assets/img/cindyJulaton_pres.jpg",
+            caption: "Cindy's image 1 caption"
+          },
+        
+          {
+            src: "../assets/img/cindyJulaton_prev.jpg",
+            caption: "Cindy's image 2 caption"
+          },
+        
+          {
+            src: "../assets/img/cindyJulaton_workplace.jpg",
+            caption: "Cindy's image 3 caption"
+          },
+        
+          {
+            src: "../assets/img/cindyJulaton_prev_env.jpg",
+            caption: "Cindy's image 4 caption"
+          }
+        
+      ]
+    },
+    
+    "Darren Gale": {
+      name: "Darren Gale",
+      firstname: "Darren",
+      url: "/stories/darrenGale.html",
+      images: [
+        
+          {
+            src: "../assets/img/darrenGale_pres.jpg",
+            caption: "Darren's image 1 caption"
+          },
+        
+          {
+            src: "../assets/img/darrenGale_prev.jpg",
+            caption: "Darren's image 2 caption"
+          },
+        
+          {
+            src: "../assets/img/darrenGale_past.jpg",
+            caption: "Darren's image 3 caption"
+          }
+        
+      ]
+    },
+    
+    "David Fleming": {
+      name: "David Fleming",
+      firstname: "David",
+      url: "/stories/davidFleming.html",
+      images: [
+        
+          {
+            src: "../assets/img/davidFleming_pres.jpg",
+            caption: "David's image 1 caption"
+          },
+        
+          {
+            src: "../assets/img/davidFleming_prev.jpg",
+            caption: "David's image 2 caption"
+          }
+        
+      ]
+    },
+    
+    "Joanne Hall": {
+      name: "Joanne Hall",
+      firstname: "Joanne",
+      url: "/stories/joanneHall.html",
+      images: [
+        
+          {
+            src: "../assets/img/joanneHall_pres.jpg",
+            caption: "Joanne's image 1 caption"
+          },
+        
+          {
+            src: "../assets/img/joanneHall_workplace.jpg",
+            caption: "Joanne's image 2 caption"
+          }
+        
+      ]
+    },
+    
+    "Olivier Gutknecht": {
+      name: "Olivier Gutknecht",
+      firstname: "Olivier",
+      url: "/stories/olivierGutknecht.html",
+      images: [
+        
+          {
+            src: "../assets/img/olivierGutknecht_pres.jpg",
+            caption: "Olivier's image 1 caption"
+          },
+        
+          {
+            src: "../assets/img/olivierGutknecht_prev.jpg",
+            caption: "Olivier's image 2 caption"
+          }
+        
+      ]
+    }
+    
+  };
+</script>
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("explore-modal");
+  const modalTitle = document.getElementById("explore-modal-title");
+  const track = document.getElementById("explore-carousel-track");
+  const closeBtn = document.querySelector(".explore-close");
+  const prevBtn = document.querySelector(".explore-prev");
+  const nextBtn = document.querySelector(".explore-next");
+  const captionEl = document.getElementById("explore-caption");
+  const dotsContainer = document.getElementById("explore-carousel-dots"); // ✅ NEW
+
+  let currentImages = [];
+  let currentIndex = 0;
+
+  // --- Open Modal ---
+  document.querySelectorAll(".explore-item").forEach(item => {
+    item.addEventListener("click", () => {
+      const personName = item.dataset.person;
+      const person = window.explorePeople?.[personName];
+      if (!person || !person.images || person.images.length === 0) {
+        console.warn("No images found for", personName);
+        return;
+      }
+
+      modalTitle.textContent = person.name;
+      currentImages = person.images;
+      currentIndex = 0;
+
+// --- Update Story Link ---
+        const storyLink = document.getElementById("explore-story-link");
+        if (person.firstname && person.url) {
+        storyLink.textContent = `${person.firstname}'s Story →`;
+        storyLink.href = person.url;
+        storyLink.style.display = "block";
+        } else {
+        storyLink.style.display = "none";
+        }
+    
+
+      // Build slides
+      track.innerHTML = currentImages.map(img => `
+        <div class="explore-slide">
+          <img src="${img.src}" alt="">
+        </div>
+      `).join('');
+
+      // ✅ Build tracker dots
+      dotsContainer.innerHTML = currentImages.map((_, i) => `
+        <span class="explore-dot${i === 0 ? ' active' : ''}" data-index="${i}"></span>
+      `).join('');
+
+      // ✅ Clickable dots
+      dotsContainer.querySelectorAll('.explore-dot').forEach(dot => {
+        dot.addEventListener('click', () => {
+          currentIndex = parseInt(dot.dataset.index, 10);
+          updateCarousel();
+        });
+      });
+
+      // Set first caption
+      captionEl.textContent = currentImages[currentIndex]?.caption || '';
+
+      // Activate first slide
+      const slides = track.querySelectorAll('.explore-slide');
+      slides.forEach((s, i) => s.classList.toggle('active', i === currentIndex));
+
+      modal.style.display = "flex";
+      updateCarousel();
+    });
+  });
+
+  // --- Update Carousel ---
+  function updateCarousel() {
+    const slides = track.querySelectorAll('.explore-slide');
+    if (!slides.length) return;
+
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === currentIndex);
+    });
+
+    // update external caption
+    captionEl.textContent = currentImages[currentIndex]?.caption || '';
+
+    // ✅ update dot tracker
+    const dots = dotsContainer.querySelectorAll('.explore-dot');
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+  }
+
+  // --- Navigation (Buttons) ---
+  function goPrev() {
+    if (!currentImages.length) return;
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    updateCarousel();
+  }
+
+  function goNext() {
+    if (!currentImages.length) return;
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    updateCarousel();
+  }
+
+  prevBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    goPrev();
+  });
+
+  nextBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    goNext();
+  });
+
+  // --- Keyboard Navigation ---
+  document.addEventListener("keydown", e => {
+    if (modal.style.display !== "flex") return; // only when modal open
+    if (e.key === "ArrowLeft") goPrev();
+    if (e.key === "ArrowRight") goNext();
+    if (e.key === "Escape") modal.style.display = "none";
+  });
+
+  // --- Close Modal ---
+  closeBtn.addEventListener("click", () => modal.style.display = "none");
+  modal.addEventListener("click", e => {
+    if (e.target === modal) modal.style.display = "none";
+  });
+});
+
+</script>
+
+
+
+</body>
