@@ -32,6 +32,17 @@ header {
   border-bottom: 2px solid #ddd; /* border is only under this inner container */
 }
 
+.explore-separator {
+  max-width: 90%;   /* control how wide the border goes */
+  margin: 0 auto;
+  display: flex;
+  padding-top: 50px;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 2px solid #ddd; /* border is only under this inner container */
+  margin-top: -20px;
+}
+
 .left-group {
   display: flex;
   align-items: center;
@@ -346,6 +357,40 @@ header .nav-right {
 .stories-section .intro2 a:hover {
   color: #9b9b9b; 
 }
+
+.explore-nav {
+  display: flex;
+  justify-content: center;   /* centers the whole group */
+  gap: 60px;                 /* spacing between links */
+  margin: 0 auto 40px;
+  font-size: 1.4em;
+  color: #666;
+}
+
+.explore-nav a,
+.explore-links a {
+  text-decoration: none;
+  color: #333;
+  padding: 4px 20px;
+  border-radius: 20px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Hover for all nav items */
+.explore-nav a:hover,
+.explore-links a:hover {
+  background: #f2f2f2;
+  color: #000;
+}
+
+/* Selected pill — border only */
+.currentExplore {
+  border: 2px solid brown;
+  background: transparent;
+  color: brown !important;
+  font-weight: 200;
+}
+
 
 .stories-section .filler {
   color: #303030;
@@ -760,6 +805,8 @@ header .nav-right {
   padding: 2rem 1rem;
 }
 
+
+
 /* --- Modal Content --- */
 .explore-modal-content {
   position: relative;
@@ -773,10 +820,24 @@ header .nav-right {
   align-items: center;
 }
 
+.explore-modal-content-sound {
+  position: absolute;        /* ensures the close button stays fixed relative to viewport */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  padding: 10px;
+  max-width: 90vw;
+  width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  color: white;
+}
+
 .explore-close {
   position: absolute;
-  top: 20px;
-  right: 15px;
+  top: 30px;
+  right: 30px;
   font-size: 2rem;
   cursor: pointer;
   color: white;
@@ -924,6 +985,247 @@ header .nav-right {
   text-decoration: underline;
 }
 
+/* EXPLORE SOUND */
+
+.sound-modal-layout {
+  display: flex;
+  gap: 40px;              /* fixed spacing between columns */
+  justify-content: center;
+  align-items: center;     /* ← vertical centering restored */
+  width: auto;
+  max-width: 90vw;
+  height: 100%;            /* ← needed for vertical centering */
+  margin: 0 auto;
+}
+
+
+
+/* LEFT SIDE (IMAGE + TITLE) */
+.sound-modal-left,
+.sound-modal-right {
+  width: auto;      /* ← don't stretch */
+  flex: 0 0 auto;   /* ← content determines size */
+  text-align: center;
+}
+
+.sound-modal-right {
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* also safe */
+}
+
+
+#sound-modal-title {
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+#sound-modal-cover {
+  max-width: 90%;
+  max-height: 70vh;
+  object-fit: contain;
+  border: 4px solid #000;
+  box-shadow: 0 0 12px rgba(0,0,0,0.6);
+  background: #222;
+}
+
+#sound-modal-soundlist {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Individual sound item */
+.sound-item {
+  margin-bottom: 35px;
+}
+
+/* --- Minimalist Audio Player Theme --- */
+.sound-item audio {
+  width: 100%;
+  background: #222;
+  border-radius: 6px;
+  border: 1px solid #444;
+  padding: 4px;
+}
+
+/* Remove default blue highlight on Chrome */
+.sound-item audio::-webkit-media-controls-panel {
+  background-color: #222 !important;
+}
+
+/* Play/pause button */
+.sound-item audio::-webkit-media-controls-play-button {
+  filter: invert(90%); /* light gray */
+}
+
+/* Timeline */
+.sound-item audio::-webkit-media-controls-timeline {
+  filter: invert(90%);
+}
+
+/* Volume slider */
+.sound-item audio::-webkit-media-controls-volume-slider {
+  filter: invert(90%);
+}
+
+/* Mute button */
+.sound-item audio::-webkit-media-controls-mute-button {
+  filter: invert(90%);
+}
+
+/* Time labels */
+.sound-item audio::-webkit-media-controls-current-time-display,
+.sound-item audio::-webkit-media-controls-time-remaining-display {
+  color: #eee !important;
+}
+
+
+
+
+/* Dropdown caption */
+.sound-caption-toggle {
+  cursor: pointer;
+  font-size: 1.2em;
+  color: #ccc;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sound-caption-toggle:hover {
+  color: #fff;
+}
+
+.sound-caption {
+  display: none;
+  font-size: 1.05em;
+  margin-top: 5px;
+  color: #ddd;
+  line-height: 1.5;
+}
+
+/* Visible when toggled */
+.sound-caption.open {
+  display: block;
+}
+
+.sound-caption-toggle .arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+  transform: rotate(0deg);
+}
+
+/* When open: rotate to point downward (˅) */
+.sound-caption-toggle.open .arrow {
+  transform: rotate(90deg);
+}
+
+/* Bottom-right story link */
+.sound-story-link {
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.9;
+  font-size: 1.2rem;
+}
+
+.sound-story-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* Container holding all tag bubbles */
+.sound-tags {
+  margin-bottom: 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.sound-tag {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.14);
+  padding: 4px 10px;
+  font-size: 0.85em;
+  border-radius: 10px;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.25);
+  white-space: nowrap;
+  text-decoration: none;       /* remove underline */
+  transition: background 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
+}
+
+.sound-tag:hover {
+  background: rgba(255,255,255,0.22);
+  border-color: rgba(255,255,255,0.35);
+}
+
+#tag-selector-container {
+  position: relative;
+  top: -35px;       /* pull upward — adjust to taste */
+  z-index: 10;
+  display: flex;
+  gap: 10px;
+  padding: 8px;
+  border: 2px solid rgb(44,44,44);
+  background: white;
+  border-radius: 6px;
+  width: max-content;
+  margin: 0 auto;   /* keep it centered */
+}
+
+
+
+#tag-selector {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: rgb(44, 44, 44);
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+#tag-selector option {
+  color: #000;
+}
+
+#tag-submit-btn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.15);
+  color: rgb(44, 44, 44);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#tag-submit-btn:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+
+/* --- Mobile / narrow screens --- */
+@media (max-width: 900px) {
+  .sound-modal-layout {
+    flex-direction: column;
+  }
+
+  .sound-modal-left,
+  .sound-modal-right {
+    width: 100%;
+  }
+
+  #sound-story-link {
+    bottom: 20px;
+    right: 20px;
+  }
+}
 
 /* Footer */
 footer {
