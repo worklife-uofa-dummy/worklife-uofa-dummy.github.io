@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" href="/assets/css/main.css">
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'></link>
+  <title>Seamless Infinite Scrolling Gallery</title>
+  <style>
+    body {
+      margin: 0;
+      background: rgb(245, 245, 245)5c5;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Abel';
+    }
+
+    .gallery-container {
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      align-items: center;
+      position: relative;
+      border: 2px solid #44444470;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+
+    .gallery-track {
+      display: flex;
+      gap: 1px; /* Gap between images */
+      width: max-content;
+      animation: scroll 60s linear infinite;
+    }
+
+    .gallery-track img {
+      width: 400px;
+      height: 400px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border-radius: 6px;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-50% - 10px)); /* Half + half the total gap to compensate */
+      }
+    }
+
+    .text-container {
+      width: 38%;
+      text-align: center;
+      height: 80px;
+      position: relative;
+      margin-top: 10px;
+    }
+
+    .text-container p {
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+      transition: opacity 3s ease-in-out;
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .text-container p.active {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gallery-container">
+    <div class="gallery-track" id="track">
+      <!-- One full set of images -->
+      <img src="../assets/img/exhibit_01.jpg" />
+      <img src="../assets/img/exhibit_03.jpg" />
+      <img src="../assets/img/exhibit_02.jpg" />
+      <!-- Duplicate set (for seamless looping) -->
+      <img src="../assets/img/exhibit_01.jpg" />
+      <img src="../assets/img/exhibit_03.jpg" />
+      <img src="../assets/img/exhibit_02.jpg" />
+    </div>
+  </div>
+
+  <div class="text-container" id="text-container">
+    <p class="active">"It is up to you to use the talent not just for you, but for everybody. My talent was sewing. So now, I make something with the hands, anything I learn I will make with skill. I like mathematical numbers, and I like to solve it."</p>
+    <p>“First time in my life in Canada in thirty years, I get EI. When I was with EI they gave me just eight months, and I start looking for another job, not sewing. I try in another place, no, no. And then I find out the advertising of the school bus driver because they’re replacing, and this job is for retired or semi-retired.</p>
+    <p>I talk by phone first [and they said] oh yes, come in you, you have license, yes. Maybe I had karma or the lady dispatchers liked my face!”
+</p>
+  </div>
+
+ <script>
+  const paragraphs = document.querySelectorAll("#text-container p");
+  let index = 0;
+  const total = paragraphs.length;
+  const interval = 20000;
+
+  function updateParagraph() {
+    paragraphs.forEach((p, i) => {
+      p.classList.toggle("active", i === index);
+    });
+    index = (index + 1) % total;
+  }
+
+  // Start immediately after first paint
+   updateParagraph();
+  setInterval(updateParagraph, interval);
+</script>
+
+</body>
+</html>

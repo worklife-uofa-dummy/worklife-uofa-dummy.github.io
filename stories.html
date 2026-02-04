@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work-Life in Canada</title>
+  <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'></link>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="left-group">
+     <div class="logo"><a href="/"><img src="../assets/img/logo.png" alt="Work Life Canada Logo" style="scale: 150%;"></a></div>
+    <nav>
+      <ul>
+        <li class="currentLink"><a href="/stories">Stories</a></li>
+        <li><a href="/exhibits">Exhibits</a></li>
+        <li><a href="/explore/images">Explore</a></li>
+      </ul>
+    </nav>
+    </div>
+    <div class="nav-right">
+      <a href="#">About</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </div>
+</header>
+
+<main class="stories-section">
+  <h1>STORIES</h1>
+  <p class="intro">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </p>
+
+  <div class="stories-grid">
+    
+    
+    <a href="/stories/abellaCGarcia.html" class="story-card">
+      <img src="/assets/img/abellaCGarcia.jpg">
+      <div class="overlay"><span>Abella C. Garcia<br style="font-size:0.8em;"> - View - </span></div>
+    </a>
+    
+    <a href="/stories/chrisWilson.html" class="story-card">
+      <img src="/assets/img/chrisWilson.jpg">
+      <div class="overlay"><span>Chris Wilson<br style="font-size:0.8em;"> - View - </span></div>
+    </a>
+    
+    <a href="/stories/davidFleming.html" class="story-card">
+      <img src="">
+      <div class="overlay"><span><br style="font-size:0.8em;"> - View - </span></div>
+    </a>
+    
+    <a href="/stories/dwaneEveritt.html" class="story-card">
+      <img src="/assets/img/dwayneEveritt.jpg">
+      <div class="overlay"><span>Dwane Everitt<br style="font-size:0.8em;"> - View - </span></div>
+    </a>
+    
+    <a href="/stories/henriFeasson.html" class="story-card">
+      <img src="/assets/img/henriFeasson.jpg">
+      <div class="overlay"><span>Henri Feasson<br style="font-size:0.8em;"> - View - </span></div>
+    </a>
+    
+    <a href="/stories/javedSyed.html" class="story-card">
+      <img src="/assets/img/javedSyed.jpg">
+      <div class="overlay"><span>Javed Syed<br style="font-size:0.8em;"> - View - </span></div>
+    </a>
+    
+    <a href="/stories/kendraWaldner.html" class="story-card">
+      <img src="/assets/img/kendraWaldner.jpg">
+      <div class="overlay"><span>Kendra Waldner<br style="font-size:0.8em;"> - View - </span></div>
+    </a>
+    
+    <a href="/stories/neillJenson.html" class="story-card">
+      <img src="/assets/img/neillJenson.jpg">
+      <div class="overlay"><span>Neill Jenson<br style="font-size:0.8em;"> - View - </span></div>
+    </a>
+    
+    <a href="/stories/norieSanchez.html" class="story-card">
+      <img src="/assets/img/norieSanchez.jpg">
+      <div class="overlay"><span>Norie Sanchez<br style="font-size:0.8em;"> - View - </span></div>
+    </a>
+    
+    <a href="/stories/ramazanNassery.html" class="story-card">
+      <img src="/assets/img/ramazanNassery.jpg">
+      <div class="overlay"><span>Ramazan Nassery<br style="font-size:0.8em;"> - View - </span></div>
+    </a>
+    
+    <a href="/stories/shaneMiller.html" class="story-card">
+      <img src="/assets/img/shaneMiller.jpg">
+      <div class="overlay"><span>Shane Miller<br style="font-size:0.8em;"> - View - </span></div>
+    </a>
+    
+    <a href="/stories/williamWaldner.html" class="story-card">
+      <img src="/assets/img/williamWaldner.jpg">
+      <div class="overlay"><span>William Waldner<br style="font-size:0.8em;"> - View - </span></div>
+    </a>
+    
+
+  </div>
+</main>
+
+<script>
+// Randomize story card order on each page load
+document.addEventListener('DOMContentLoaded', () => {
+  const grid = document.querySelector('.stories-grid');
+  if (!grid) return;
+
+  // Get all story cards
+  const cards = Array.from(grid.querySelectorAll('.story-card'));
+  
+  // Fisher-Yates shuffle algorithm
+  for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+
+  // Re-insert shuffled cards back into the grid
+  cards.forEach(card => grid.appendChild(card));
+});
+</script>
+
+</body>

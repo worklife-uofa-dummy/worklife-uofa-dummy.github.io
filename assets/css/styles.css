@@ -1,0 +1,1440 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Abel';
+  line-height: 1.6;
+  color: #333;
+  background: #fff;
+}
+
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 1000;
+}
+
+/* Inner wrapper */
+.header-inner {
+  max-width: 90%;   /* control how wide the border goes */
+  margin: 0 auto;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #ddd; /* border is only under this inner container */
+}
+
+.explore-separator {
+  max-width: 90%;   /* control how wide the border goes */
+  margin: 0 auto;
+  display: flex;
+  padding-top: 50px;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 2px solid #ddd; /* border is only under this inner container */
+  margin-top: -20px;
+}
+
+.left-group {
+  display: flex;
+  align-items: center;
+  gap: 40px; /* spacing between logo and nav */
+}
+
+header .logo img {
+  height: 40px;
+}
+
+header nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+header nav a, 
+header .nav-right a {
+  text-decoration: none;
+  color: #333;
+  font-weight: normal;
+  font-size: 1.2em;
+  transition: color 0.3s ease; /* smooth fade */
+}
+
+.currentLink {
+  color:brown;
+  text-decoration: underline;
+}
+
+
+header nav a:hover,
+header .nav-right a:hover {
+  color: #9b9b9b; /* lighter grey on hover */
+}
+
+header .nav-right {
+  display: flex;
+  gap: 20px;
+}
+
+/* Hero Section */
+.hero {
+  margin-top: 55px; /* space for fixed header */
+  text-align: center;
+  padding: 20px 5px;
+}
+
+.hero h1 {
+    font-weight: normal;
+    color:#6e6e6e;
+  font-size: 2.6rem;
+  margin-bottom: -10px;
+}
+
+.hero h2 {
+    color:brown;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.hero p {
+  max-width: 800px;
+  margin: 0 auto 30px;
+}
+
+.gallery-container {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid #444;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  margin: 0 auto;
+}
+
+/* Left fade */
+.gallery-container::before,
+.gallery-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 80px;       /* adjust how wide the fade is */
+  height: 100%;
+  z-index: 2;
+  pointer-events: none; /* don’t block clicks */
+}
+
+.gallery-container::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+
+.gallery-container::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+
+
+.gallery-track {
+      display: flex;
+      gap: 2px; /* Gap between images */
+      width: max-content;
+      animation: scroll 80s linear infinite;
+}
+
+.gallery-track img {
+      width: 400px;
+      height: 400px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border-radius: 2px;
+}
+
+@keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-50% - 10px)); /* Half + half the total gap to compensate */
+      }
+}
+
+.explore-btn {
+  display: inline-block;   /* ensure it participates in normal layout */
+  margin-top: 22px;        /* or whatever spacing you need */
+  position: relative;      /* ensures margin works properly */
+  padding: 12px 25px;
+  border: 1px solid #333;
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+  border-radius: 3px;                 /* rounded corners */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* subtle shadow */
+  text-decoration: none;        /* removes underline */
+  color: inherit;               /* uses your custom text color */
+  outline: none;  
+}
+
+.explore-btn:hover {
+  background: #f0f0f0;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2); /* slightly stronger shadow on hover */
+}
+
+.explore-btn:visited {
+  color: inherit;
+}
+
+/* About Section */
+.about {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 60px 40px;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-text {
+  flex: 2;
+}
+
+.about-text h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.about-text p {
+  margin-bottom: 15px;
+}
+
+.about-text .learn-more {
+  display: inline-block;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.about-carousel {
+  position: relative;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 500px;   /* adjust to fit your layout */
+  overflow: visible;
+}
+
+.carousel-images-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+  min-width: 100%;       /* each slide fills container */
+  display: flex;
+  gap: 2px;
+  justify-content: center;
+}
+
+.carousel-slide img {
+  width: 49%;            /* two side by side */
+  height: auto;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+/* Controls */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;                 
+  background: rgba(255, 255, 255, 0.85);
+  color: #333;                         /* controls SVG stroke color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  z-index: 5;
+}
+
+.carousel-btn svg {
+  pointer-events: none; /* ensures clicks hit button, not SVG */
+}
+
+.carousel-btn:hover {
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Positioning */
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+
+.carousel-captions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+/* hide inactive pairs */
+.caption-pair {
+  display: none;
+  width: 100%;
+  justify-content: space-between;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.caption-pair.active {
+  display: flex;
+  opacity: 1;
+}
+
+.caption-pair p {
+  width: 48%;
+  text-align: left;
+}
+
+
+/* stories */
+
+.stories-section {
+  text-align: center;
+  padding: 80px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stories-section h1 {
+  font-size: 2rem;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.stories-section .intro {
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+.stories-section .intro2 {
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto 60px;
+  line-height: 1.6;
+  font-size: 1.5em;
+}
+
+.stories-section .intro2 a {
+  text-decoration: none;
+  color: #333;
+  font-weight: normal;
+  transition: color 0.3s ease; /* smooth fade */
+}
+
+.stories-section .intro2 .currentExplore {
+  text-decoration: underline;
+  color: brown;
+}
+
+.stories-section .intro2 a:hover {
+  color: #9b9b9b; 
+}
+
+.explore-nav-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 40px;
+  max-width: 800px;            /* match intro width */
+  width: 100%;
+  padding: 0px;                /* outer padding for the rounded bar */
+  background: #f3f3f3;         /* light grey bar */
+  border-radius: 10px;
+  box-sizing: border-box;
+  height: 56px;                /* fixed bar height to align tabs */
+  margin-bottom: 50px;
+}
+
+.explore-nav {
+  display: flex;
+  gap: 0px;                   /* spacing between tabs */
+  width: 100%;
+  align-items: stretch;        /* make children fill available height */
+  justify-content: space-between; /* distribute tabs evenly */
+  font-size: 1.4em;
+  box-sizing: border-box;
+  padding: 0 6px;
+  margin: 0;
+  height: 100%;
+}
+
+.explore-nav a,
+.explore-links a {
+  flex: 1;                     /* make tabs spread evenly across the bar */
+  text-decoration: none;
+  color: #666;
+  padding: 0 16px;             /* horizontal inset for underline alignment */
+  height: 56px;                /* fill the inner bar height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: transparent;     /* transparent so outer bar provides grey */
+  text-align: center;
+  position: relative;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.explore-nav a:hover,
+.explore-links a:hover {
+  background: rgba(0,0,0,0.04);
+  color: #000;
+}
+
+.explore-nav a.currentExplore,
+.currentExplore {
+  background: #fff;
+  color: #a30000 !important;
+  font-weight: 500;
+  z-index: 3;
+  position: relative;
+  border-bottom: 0;
+  height: 56px;                /* ensure same height as other tabs */
+}
+
+.explore-nav a.currentExplore::after {
+  content: '';
+  position: absolute;
+  left: 16px;                  /* match anchor horizontal padding */
+  right: 16px;                 /* match anchor horizontal padding */
+  bottom: -6px;                /* raise the underline slightly */
+  height: 3px;
+  background: #a30000;
+  border-radius: 2px;
+}
+
+
+.stories-section .filler {
+  color: #303030;
+  font-weight: normal;
+  font-size: 1.5em;
+}
+
+.stories-grid {
+  display: grid;
+  margin-top: -10px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2px;
+}
+
+.story-card {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  aspect-ratio: 1 / 1;
+}
+
+.story-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.story-card .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(109, 109, 109, 0.6);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.story-card:hover .overlay {
+  opacity: 1;
+}
+
+/* Audio Bar */
+
+
+
+.audio-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 5%; /* create same inset as header border */
+  right: 5%;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.story-footer {
+  padding-bottom: 110px;
+}
+
+.audio-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 0;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+#audio-bar.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Disabled / frozen state for the audio bar */
+.audio-bar.disabled .play-pause,
+.audio-bar.disabled .visualizer {
+  opacity: 0.4;
+  pointer-events: none; /* prevent interaction */
+  transition: opacity 0.3s ease;
+}
+
+/* Freeze visualizer bars */
+.audio-bar.disabled .visualizer div {
+  animation: none !important;
+  transform: scaleY(1) !important;
+  transition: transform 0.2s ease;
+}
+
+/* Dim + disable only the play/pause and visualizer when a clip is active */
+.audio-bar.clip-active .play-pause,
+.audio-bar.clip-active .visualizer {
+  opacity: 0.45;
+  pointer-events: none;             /* prevents clicks on the visualizer; play-pause disabled */
+  transition: opacity 0.28s ease;
+}
+
+/* Make visualizer bars appear greyed out */
+.audio-bar.clip-active .visualizer div {
+  background: #bdbdbd;              /* grey bars */
+  opacity: 0.6;
+  transition: background-color 0.28s ease, opacity 0.28s ease, transform 0.5s ease;
+}
+
+/* If you want the play/pause icon itself to change color too */
+.audio-bar.clip-active .play-pause svg {
+  color: #777;                      /* applies to svg with currentColor or use filter if needed */
+}
+
+/* Optional: subtle desaturate of the play icon if svg colors are baked in */
+.audio-bar.clip-active .play-pause {
+  filter: grayscale(80%);
+}
+
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+/* Play/Pause Button Styling */
+.play-pause {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a30000;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.play-pause:hover {
+  background: #eeeeee;
+}
+
+/* Visualizer */
+.visualizer {
+  display: flex;
+  align-items: center; /* center baseline for middle animation */
+  gap: 4px;
+  height: 30px;
+  position: relative;
+}
+
+.visualizer div {
+  width: 5px;
+  height: 8px;
+  background: #a30000;
+  border-radius: 4px;
+  opacity: 0.8;
+  transition: height 0.3s ease, opacity 0.3s ease; /* smooth fade */
+  transform-origin: center center;
+}
+
+/* Story page */
+
+.person-page {
+  text-align: center;
+  margin: 60px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.person-name {
+  font-family: 'Abel', serif;
+  font-size: 3rem;
+  color: #353535;
+  margin-bottom: 20px;
+}
+
+.photo-pair-container {
+  position: relative;
+}
+
+.photo-pair {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 0px;
+  z-index: 100;
+  background: transparent; /* transparent so pseudo-element can provide background */
+  padding: 0;
+  width: 100%;
+  position: -webkit-sticky; /* mobile support */
+  position: sticky;
+  overflow: visible;
+}
+
+.photo-pair::after {
+  /* default: no visible gradient until sticky-active */
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: height 0.3s ease, background 0.3s ease;
+}
+
+.photo-pair.sticky-active {
+  justify-content: center;
+  gap: 2px;
+}
+
+/* when sticky, show a stronger gradient that extends below the images
+   so it fades the page content beneath them */
+.photo-pair.sticky-active::after {
+  height: 140px; /* visible gradient height — tweak if needed */
+  top: auto;
+  bottom: -140px; /* extend below the photo-pair container */
+  background: linear-gradient(to bottom, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.0) 85%);
+}
+
+.photo-item {
+  text-align: center;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.photo-item img {
+  width: auto;
+  max-width: 562px;
+  height: auto;
+  cursor: pointer;
+  transition: max-width 0.4s ease, transform 0.3s ease, opacity 0.3s ease;
+  display: block;
+  margin: 0 auto;
+  background: #fff;
+  position: relative;
+  z-index: 2; /* sit above the gradient pseudo-element */
+}
+
+.photo-pair.sticky-active .photo-item img {
+  max-width: 373px;
+}
+
+.photo-item img:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
+
+.photo-captions {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+  line-height: 1.165;
+  margin-top: 3px;
+}
+
+/* When photo-pair is in the sticky/scaled state, hide the captions
+   so images appear to float above the story text. */
+.photo-pair.sticky-active + .photo-captions {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+}
+
+/* Ensure captions transition back to visible smoothly */
+.photo-captions {
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+}
+
+.photo-caption {
+  font-size: 1.1rem;
+  color: #777;
+  flex: 1 1 300px;
+  max-width: 562px;
+  text-align: left;
+}
+
+/* Story section */
+.story-section {
+  text-align: left;
+  max-width: 750px;
+  margin: 30px auto 50px;
+  color: #333;
+  font-size: 1.05em;
+}
+
+.story-section h2 {
+  font-weight: 600;
+  font-size: 2rem;
+  color: #1b1b1b;
+  margin-bottom: 15px;
+}
+
+.story-section p {
+  margin-bottom: 12px;
+  text-indent: 2em;
+}
+
+.story-section blockquote {
+  margin-left: 62px;
+  margin-right: 62px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+
+/* Modal styling */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  padding-top: 80px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9); 
+}
+
+.modal-content {
+  display: block;
+  margin: auto;
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 4px;
+  box-shadow: 0 0 30px rgba(255,255,255,0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+#caption {
+  margin: 20px auto;
+  text-align: center;
+  color: #ccc;
+  font-size: 0.95rem;
+}
+
+.close {
+  position: absolute;
+  top: 40px;
+  right: 60px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: #bbb;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* INTERVIEW CLIPS */
+
+.story-quote {
+  margin-left: 62px;
+  margin-right: 62px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.quoteContainer,
+.quote-container {
+  position: relative;
+}
+
+.clip-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(-90deg); /* start progress at top */
+}
+
+.ring-bg {
+  fill: none;
+  stroke: #ddd;
+  stroke-width: 3;
+}
+
+.ring-progress {
+  fill: none;
+  stroke: #555;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 125.6; /* 2 * Math.PI * r (r = 20) */
+  stroke-dashoffset: 125.6;
+  transition: stroke-dashoffset 0.15s linear;
+}
+
+.clip-icon {
+  position: relative;
+  z-index: 2;
+  color: #222;
+  width: 24px;
+  height: 24px;
+}
+
+.clip-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/*** EXPLORE PAGE ***/
+
+.explore-grid {
+  display: grid;
+  margin-top: -30px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2px;
+  max-width: 1200px;
+}
+
+.explore-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.explore-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.explore-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(109, 109, 109, 0.6);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  text-align: center;
+}
+
+.explore-item:hover .explore-overlay {
+  opacity: 1;
+}
+
+.explore-overlay h3 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.explore-overlay p {
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+  letter-spacing: 1px;
+}
+
+.explore-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 2rem 1rem;
+}
+
+
+
+/* --- Modal Content --- */
+.explore-modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  color: white;
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.explore-modal-content-sound {
+  position: absolute;        /* ensures the close button stays fixed relative to viewport */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  padding: 10px;
+  max-width: 90vw;
+  width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  color: white;
+}
+
+.explore-close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
+}
+
+.explore-carousel {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  overflow: visible; /* ✅ allow image to define its own height */
+  background: transparent;
+}
+
+/* --- Track --- */
+.explore-carousel-track {
+  position: relative;
+  width: 100%;
+  display: block; /* ✅ not flex: let images size themselves */
+}
+
+/* --- Slide --- */
+.explore-slide {
+  display: none;
+  text-align: center;
+  transition: opacity 0.4s ease;
+}
+
+.explore-slide.active {
+  display: block;
+  opacity: 1;
+}
+
+.explore-slide img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 80vh; /* ✅ always fits within screen but keeps full aspect ratio */
+  object-fit: contain;
+  margin: 0 auto;
+  border: 4px solid #000;
+  background: #222;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+}
+
+#explore-caption,
+.explore-slide-caption {
+  margin-top: 10px;
+  font-size: 1.3rem;
+  color: #eee;
+  min-height: 1.2em;    /* reserve vertical space so caption area doesn't jump */
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.explore-prev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3.4rem;
+  color: #aaa;
+  cursor: pointer;
+  user-select: none;
+  z-index: 5;
+  background: none;
+  border: none;
+  transition: color 0.2s ease;
+  margin-right: 10px;
+}
+
+.explore-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3.4rem;
+  color: #aaa;
+  cursor: pointer;
+  user-select: none;
+  z-index: 5;
+  background: none;
+  border: none;
+  transition: color 0.2s ease;
+  margin-left: 10px;
+}
+
+/* Keep arrows close to the visible image edges */
+.explore-prev {
+  left: calc(50% - 420px); /* just outside a centered 800px image area */
+}
+
+.explore-next {
+  right: calc(50% - 420px);
+}
+
+.explore-prev:hover,
+.explore-next:hover {
+  color: white;
+}
+
+.explore-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.explore-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #666;
+  transition: background 0.3s ease;
+}
+
+.explore-dot:hover {
+  cursor: pointer;
+}
+
+.explore-dot.active {
+  background: white;
+}
+
+@media (max-width: 768px) {
+  .explore-modal-content {
+    width: 95%;
+  }
+
+  .explore-slide img {
+    max-height: 65vh;
+  }
+
+  .explore-prev {
+    left: 2%;
+  }
+  .explore-next {
+    right: 2%;
+  }
+}
+
+.explore-story-link {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  color: #ccc;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  z-index: 10;
+    opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.explore-modal[style*="display: flex"] .explore-story-link {
+  opacity: 1;
+}
+
+.explore-story-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+/* EXPLORE SOUND */
+
+.sound-modal-layout {
+  display: flex;
+  gap: 40px;              /* fixed spacing between columns */
+  justify-content: center;
+  align-items: center;     /* ← vertical centering restored */
+  width: auto;
+  max-width: 90vw;
+  height: 100%;            /* ← needed for vertical centering */
+  margin: 0 auto;
+}
+
+
+
+/* LEFT SIDE (IMAGE + TITLE) */
+.sound-modal-left,
+.sound-modal-right {
+  width: auto;      /* ← don't stretch */
+  flex: 0 0 auto;   /* ← content determines size */
+  text-align: center;
+}
+
+.sound-modal-right {
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* also safe */
+}
+
+
+#sound-modal-title {
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+#sound-modal-cover {
+  max-width: 90%;
+  max-height: 70vh;
+  object-fit: contain;
+  border: 4px solid #000;
+  box-shadow: 0 0 12px rgba(0,0,0,0.6);
+  background: #222;
+}
+
+#sound-modal-soundlist {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Individual sound item */
+.sound-item {
+  margin-bottom: 35px;
+}
+
+/* --- Minimalist Audio Player Theme --- */
+.sound-item audio {
+  width: 100%;
+  background: #222;
+  border-radius: 6px;
+  border: 1px solid #444;
+  padding: 4px;
+}
+
+/* Remove default blue highlight on Chrome */
+.sound-item audio::-webkit-media-controls-panel {
+  background-color: #222 !important;
+}
+
+/* Play/pause button */
+.sound-item audio::-webkit-media-controls-play-button {
+  filter: invert(90%); /* light gray */
+}
+
+/* Timeline */
+.sound-item audio::-webkit-media-controls-timeline {
+  filter: invert(90%);
+}
+
+/* Volume slider */
+.sound-item audio::-webkit-media-controls-volume-slider {
+  filter: invert(90%);
+}
+
+/* Mute button */
+.sound-item audio::-webkit-media-controls-mute-button {
+  filter: invert(90%);
+}
+
+/* Time labels */
+.sound-item audio::-webkit-media-controls-current-time-display,
+.sound-item audio::-webkit-media-controls-time-remaining-display {
+  color: #eee !important;
+}
+
+
+
+
+/* Dropdown caption */
+.sound-caption-toggle {
+  cursor: pointer;
+  font-size: 1.2em;
+  color: #ccc;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sound-caption-toggle:hover {
+  color: #fff;
+}
+
+.sound-caption {
+  display: none;
+  font-size: 1.05em;
+  margin-top: 5px;
+  color: #ddd;
+  line-height: 1.5;
+}
+
+/* Visible when toggled */
+.sound-caption.open {
+  display: block;
+}
+
+.sound-caption-toggle .arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+  transform: rotate(0deg);
+}
+
+/* When open: rotate to point downward (˅) */
+.sound-caption-toggle.open .arrow {
+  transform: rotate(90deg);
+}
+
+/* Bottom-right story link */
+.sound-story-link {
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.9;
+  font-size: 1.2rem;
+}
+
+.sound-story-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* Container holding all tag bubbles */
+.sound-tags {
+  margin-bottom: 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.sound-tag {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.14);
+  padding: 4px 10px;
+  font-size: 0.85em;
+  border-radius: 10px;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.25);
+  white-space: nowrap;
+  text-decoration: none;       /* remove underline */
+  transition: background 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
+}
+
+.sound-tag:hover {
+  background: rgba(255,255,255,0.22);
+  border-color: rgba(255,255,255,0.35);
+}
+
+.filter-controls {
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  font-size: .8em;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-group label {
+  font-weight: 100;
+  font-size: 1.4em;
+  color: #333;
+}
+
+#tag-selector {
+  padding: 10px 15px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
+  min-width: 300px;
+  transition: border-color 0.3s;
+  color: rgb(44, 44, 44);
+}
+
+#tag-selector:hover {
+  border-color: #999;
+}
+
+#tag-selector:focus {
+  outline: none;
+  border-color: #666;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+#tag-selector option {
+  color: #000;
+}
+
+#tag-submit-btn {
+  padding: 10px 30px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#tag-submit-btn:hover {
+  background-color: #555;
+}
+
+#tag-submit-btn:active {
+  background-color: #222;
+}
+
+
+/* --- Mobile / narrow screens --- */
+@media (max-width: 900px) {
+  .sound-modal-layout {
+    flex-direction: column;
+  }
+
+  .sound-modal-left,
+  .sound-modal-right {
+    width: 100%;
+  }
+
+  #sound-story-link {
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  background: #f9f9f9;
+  border-top: 1px solid #ddd;
+}
+
+.footer-links {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  margin: 0 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+.footer-logos {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.footer-logos img {
+  height: 40px;
+}
+
+footer p {
+  font-size: 0.9rem;
+  color: #666;
+}

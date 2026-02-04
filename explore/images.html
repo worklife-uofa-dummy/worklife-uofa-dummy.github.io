@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work-Life in Canada</title>
+  <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'></link>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="left-group">
+     <div class="logo"><a href="/"><img src="../assets/img/logo.png" alt="Work Life Canada Logo" style="scale: 150%;"></a></div>
+    <nav>
+      <ul>
+        <li><a href="/stories">Stories</a></li>
+        <li><a href="/exhibits">Exhibits</a></li>
+        <li class="currentLink"><a href="/explore/images">Explore</a></li>
+      </ul>
+    </nav>
+    </div>
+    <div class="nav-right">
+      <a href="#">About</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </div>
+</header>
+
+<main class="stories-section">
+  <h1>EXPLORE</h1>
+<p class="intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate</p>
+  <div class="explore-nav-wrap">
+    <nav class="explore-nav">
+      <a class="currentExplore" href="/explore/images"> IMAGES </a>
+      <a href="/explore/sounds"> SOUNDS </a>
+      <a href="/explore/filterResults/null_null_null"> PEOPLE </a>
+      <a href="/explore/places"> PLACES </a>
+    </nav>
+  </div>
+
+
+<!-- === Explore Grid === -->
+<div class="explore-grid">
+  
+  
+    
+  
+    
+      <div class="explore-item" data-person="Abella C. Garcia">
+        <img src="/assets/img/abellaCGarcia.jpg" alt="Abella C. Garcia">
+        <div class="explore-overlay">
+          <h3>Abella C. Garcia</h3>
+          <p>- View -</p>
+        </div>
+      </div>
+    
+  
+    
+      <div class="explore-item" data-person="Chris Wilson">
+        <img src="/assets/img/chrisWilson.jpg" alt="Chris Wilson">
+        <div class="explore-overlay">
+          <h3>Chris Wilson</h3>
+          <p>- View -</p>
+        </div>
+      </div>
+    
+  
+    
+      <div class="explore-item" data-person="Dwane Everitt">
+        <img src="/assets/img/dwayneEveritt.jpg" alt="Dwane Everitt">
+        <div class="explore-overlay">
+          <h3>Dwane Everitt</h3>
+          <p>- View -</p>
+        </div>
+      </div>
+    
+  
+    
+      <div class="explore-item" data-person="Henri Feasson">
+        <img src="/assets/img/henriFeasson.jpg" alt="Henri Feasson">
+        <div class="explore-overlay">
+          <h3>Henri Feasson</h3>
+          <p>- View -</p>
+        </div>
+      </div>
+    
+  
+    
+      <div class="explore-item" data-person="Javed Syed">
+        <img src="/assets/img/javedSyed.jpg" alt="Javed Syed">
+        <div class="explore-overlay">
+          <h3>Javed Syed</h3>
+          <p>- View -</p>
+        </div>
+      </div>
+    
+  
+    
+      <div class="explore-item" data-person="Kendra Waldner">
+        <img src="/assets/img/kendraWaldner.jpg" alt="Kendra Waldner">
+        <div class="explore-overlay">
+          <h3>Kendra Waldner</h3>
+          <p>- View -</p>
+        </div>
+      </div>
+    
+  
+    
+      <div class="explore-item" data-person="Neill Jenson">
+        <img src="/assets/img/neillJenson.jpg" alt="Neill Jenson">
+        <div class="explore-overlay">
+          <h3>Neill Jenson</h3>
+          <p>- View -</p>
+        </div>
+      </div>
+    
+  
+    
+      <div class="explore-item" data-person="Norie Sanchez">
+        <img src="/assets/img/norieSanchez.jpg" alt="Norie Sanchez">
+        <div class="explore-overlay">
+          <h3>Norie Sanchez</h3>
+          <p>- View -</p>
+        </div>
+      </div>
+    
+  
+    
+      <div class="explore-item" data-person="Ramazan Nassery">
+        <img src="/assets/img/ramazanNassery.jpg" alt="Ramazan Nassery">
+        <div class="explore-overlay">
+          <h3>Ramazan Nassery</h3>
+          <p>- View -</p>
+        </div>
+      </div>
+    
+  
+    
+      <div class="explore-item" data-person="Shane Miller">
+        <img src="/assets/img/shaneMiller.jpg" alt="Shane Miller">
+        <div class="explore-overlay">
+          <h3>Shane Miller</h3>
+          <p>- View -</p>
+        </div>
+      </div>
+    
+  
+    
+      <div class="explore-item" data-person="William Waldner">
+        <img src="/assets/img/williamWaldner.jpg" alt="William Waldner">
+        <div class="explore-overlay">
+          <h3>William Waldner</h3>
+          <p>- View -</p>
+        </div>
+      </div>
+    
+  
+</div>
+</main>
+
+<!-- Modal -->
+<div id="explore-modal" class="explore-modal">
+  <span class="explore-close">&times;</span>
+  <div class="explore-modal-content">
+    
+    <h2 id="explore-modal-title"></h2>
+
+<div class="explore-carousel">
+  <button class="explore-prev">&#10094;</button>
+  <div id="explore-carousel-track" class="explore-carousel-track"></div>
+  <button class="explore-next">&#10095;</button>
+</div>
+
+    <!-- single caption element below the carousel -->
+    <p id="explore-caption" class="explore-slide-caption"></p>
+    <div id="explore-carousel-dots" class="explore-carousel-dots"></div>
+    
+  </div>
+  <a id="explore-story-link" class="explore-story-link" href="#" target="_self"></a>
+</div>
+
+
+
+
+<script>
+  window.explorePeople = {
+    
+    
+    null: {
+      name: null,
+      firstname: null,
+      url: "/stories/davidFleming.html",
+      images: [
+        
+      ]
+    },
+    
+    "Abella C. Garcia": {
+      name: "Abella C. Garcia",
+      firstname: "Abella",
+      url: "/stories/abellaCGarcia.html",
+      images: [
+        
+          {
+            src: "/assets/img/abellaCGarcia.jpg",
+            caption: "Housekeeping / Bookkeeping<br>Fort McMurray, Alberta<br>2021"
+          },
+        
+          {
+            src: "/assets/img/abellaCGarcia_past.jpg",
+            caption: "In-Home Caregiver<br>Beacon Hill Neighbourhood<br>Fort McMurray, Alberta<br>2018"
+          }
+        
+      ]
+    },
+    
+    "Chris Wilson": {
+      name: "Chris Wilson",
+      firstname: "Chris",
+      url: "/stories/chrisWilson.html",
+      images: [
+        
+          {
+            src: "/assets/img/chrisWilson.jpg",
+            caption: "Birch Mountain Enterprises<br>Owner / CEO<br>Fort McKay, Alberta<br>2021"
+          },
+        
+          {
+            src: "/assets/img/chrisWilson_past.jpg",
+            caption: "Birch Mountain Enterprises<br>Owner / CEO<br>Fort McKay, Alberta<br>2018"
+          }
+        
+      ]
+    },
+    
+    "Dwane Everitt": {
+      name: "Dwane Everitt",
+      firstname: "Dwane",
+      url: "/stories/dwaneEveritt.html",
+      images: [
+        
+          {
+            src: "/assets/img/dwayneEveritt.jpg",
+            caption: "Contract Operator<br>Oil Well Servicing<br>Red Deer River Area, Alberta <br>2021"
+          },
+        
+          {
+            src: "/assets/img/dwayneEveritt_past.jpg",
+            caption: "Contract Operator<br>Heavy Oil Battery<br>Red Deer River Area, Alberta <br>2016"
+          }
+        
+      ]
+    },
+    
+    "Henri Feasson": {
+      name: "Henri Feasson",
+      firstname: "Henri",
+      url: "/stories/henriFeasson.html",
+      images: [
+        
+          {
+            src: "/assets/img/henriFeasson.jpg",
+            caption: "Pastry Chef<br>Bakery Cafe <i>Bonjour Brioche<i><br>Toronto, Ontario<br>2021"
+          },
+        
+          {
+            src: "/assets/img/henriFeasson_past.jpg",
+            caption: "Baker<br>Bakery Cafe <i>Bonjour Brioche<i><br>Toronto, Ontario<br>2006"
+          },
+        
+          {
+            src: "/assets/img/henriFeasson_img_soundCover.jpg",
+            caption: ""
+          }
+        
+      ]
+    },
+    
+    "Javed Syed": {
+      name: "Javed Syed",
+      firstname: "Javed",
+      url: "/stories/javedSyed.html",
+      images: [
+        
+          {
+            src: "/assets/img/javedSyed.jpg",
+            caption: "Coach Operator<br>Fort McMurray, Alberta<br>2021"
+          },
+        
+          {
+            src: "/assets/img/javedSyed_past.jpg",
+            caption: "Coach Operator<br>Fort McMurray, Alberta<br>2018"
+          },
+        
+          {
+            src: "/assets/img/javedSyed_img_soundCover.jpg",
+            caption: ""
+          }
+        
+      ]
+    },
+    
+    "Kendra Waldner": {
+      name: "Kendra Waldner",
+      firstname: "Kendra",
+      url: "/stories/kendraWaldner.html",
+      images: [
+        
+          {
+            src: "/assets/img/kendraWaldner.jpg",
+            caption: "Rancher / Farmer <br> Crooked Tree Ranch <br> Near Jenner, Alberta <br> 2021"
+          },
+        
+          {
+            src: "/assets/img/kendraWaldner_past.jpg",
+            caption: "Rancher<br>Crooked Tree Ranch<br>Near Jenner, Alberta<br>2011"
+          }
+        
+      ]
+    },
+    
+    "Neill Jenson": {
+      name: "Neill Jenson",
+      firstname: "Neill",
+      url: "/stories/neillJenson.html",
+      images: [
+        
+          {
+            src: "/assets/img/neillJenson.jpg",
+            caption: ""
+          },
+        
+          {
+            src: "/assets/img/neillJenson_past.jpg",
+            caption: "Driver / Attendant<br>UFA Cardlock<br>Brooks, Alberta<br>2016"
+          }
+        
+      ]
+    },
+    
+    "Norie Sanchez": {
+      name: "Norie Sanchez",
+      firstname: "Norie",
+      url: "/stories/norieSanchez.html",
+      images: [
+        
+          {
+            src: "/assets/img/norieSanchez.jpg",
+            caption: "Manager<br>Enviro Clean DryCleaners<br>Fort McMurray, Alberta<br>2021"
+          },
+        
+          {
+            src: "/assets/img/norieSanchez_past.jpg",
+            caption: "Garment Specialist<br>Enviro Clean DryCleaners<br>Fort McMurray, Alberta<br>2018"
+          },
+        
+          {
+            src: "/assets/img/norieSanchez_img_soundCover.jpg",
+            caption: ""
+          }
+        
+      ]
+    },
+    
+    "Ramazan Nassery": {
+      name: "Ramazan Nassery",
+      firstname: "Ramazan",
+      url: "/stories/ramazanNassery.html",
+      images: [
+        
+          {
+            src: "/assets/img/ramazanNassery.jpg",
+            caption: "Immigration Consultant<br>Fort McMurray, Alberta<br>2021"
+          },
+        
+          {
+            src: "/assets/img/ramazanNassery_past.jpg",
+            caption: "Immigration Consultant<br>Fort McMurray, Alberta<br>2018"
+          }
+        
+      ]
+    },
+    
+    "Shane Miller": {
+      name: "Shane Miller",
+      firstname: "Shane",
+      url: "/stories/shaneMiller.html",
+      images: [
+        
+          {
+            src: "/assets/img/shaneMiller.jpg",
+            caption: "Pasture Supervisor<br>Alberta<br>2021"
+          },
+        
+          {
+            src: "/assets/img/shaneMiller_past.jpg",
+            caption: "Range Rider<br>Community Pasture <br>Near Buffalo, Alberta<br>2011"
+          }
+        
+      ]
+    },
+    
+    "William Waldner": {
+      name: "William Waldner",
+      firstname: "William",
+      url: "/stories/williamWaldner.html",
+      images: [
+        
+          {
+            src: "/assets/img/williamWaldner.jpg",
+            caption: "Rancher and Owner<br>Crooked Tree Ranch <br>Near Jenner, Alberta<br>2021"
+          },
+        
+          {
+            src: "/assets/img/williamWaldner_past.jpg",
+            caption: "Rancher<br>Crooked Tree Ranch<br>Near Jenner, Alberta<br>2007"
+          }
+        
+      ]
+    }
+    
+  };
+</script>
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("explore-modal");
+  const modalTitle = document.getElementById("explore-modal-title");
+  const track = document.getElementById("explore-carousel-track");
+  const closeBtn = document.querySelector(".explore-close");
+  const prevBtn = document.querySelector(".explore-prev");
+  const nextBtn = document.querySelector(".explore-next");
+  const captionEl = document.getElementById("explore-caption");
+  const dotsContainer = document.getElementById("explore-carousel-dots"); // ✅ NEW
+
+  let currentImages = [];
+  let currentIndex = 0;
+
+  // --- Open Modal ---
+  document.querySelectorAll(".explore-item").forEach(item => {
+    item.addEventListener("click", () => {
+      const personName = item.dataset.person;
+      const person = window.explorePeople?.[personName];
+      if (!person || !person.images || person.images.length === 0) {
+        console.warn("No images found for", personName);
+        return;
+      }
+
+      modalTitle.textContent = person.name;
+      currentImages = person.images;
+      currentIndex = 0;
+
+// --- Update Story Link ---
+        const storyLink = document.getElementById("explore-story-link");
+        if (person.firstname && person.url) {
+        storyLink.textContent = `${person.firstname}'s Story →`;
+        storyLink.href = person.url;
+        storyLink.style.display = "block";
+        } else {
+        storyLink.style.display = "none";
+        }
+    
+
+      // Build slides
+      track.innerHTML = currentImages.map(img => `
+        <div class="explore-slide">
+          <img src="${img.src}" alt="">
+        </div>
+      `).join('');
+
+      // ✅ Build tracker dots
+      dotsContainer.innerHTML = currentImages.map((_, i) => `
+        <span class="explore-dot${i === 0 ? ' active' : ''}" data-index="${i}"></span>
+      `).join('');
+
+      // ✅ Clickable dots
+      dotsContainer.querySelectorAll('.explore-dot').forEach(dot => {
+        dot.addEventListener('click', () => {
+          currentIndex = parseInt(dot.dataset.index, 10);
+          updateCarousel();
+        });
+      });
+
+      // Set first caption
+      captionEl.textContent = currentImages[currentIndex]?.caption || '';
+
+      // Activate first slide
+      const slides = track.querySelectorAll('.explore-slide');
+      slides.forEach((s, i) => s.classList.toggle('active', i === currentIndex));
+
+      modal.style.display = "flex";
+      updateCarousel();
+    });
+  });
+
+  // --- Update Carousel ---
+  function updateCarousel() {
+    const slides = track.querySelectorAll('.explore-slide');
+    if (!slides.length) return;
+
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === currentIndex);
+    });
+
+    // update external caption
+    captionEl.textContent = currentImages[currentIndex]?.caption || '';
+
+    // ✅ update dot tracker
+    const dots = dotsContainer.querySelectorAll('.explore-dot');
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+  }
+
+  // --- Navigation (Buttons) ---
+  function goPrev() {
+    if (!currentImages.length) return;
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    updateCarousel();
+  }
+
+  function goNext() {
+    if (!currentImages.length) return;
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    updateCarousel();
+  }
+
+  prevBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    goPrev();
+  });
+
+  nextBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    goNext();
+  });
+
+  // --- Keyboard Navigation ---
+  document.addEventListener("keydown", e => {
+    if (modal.style.display !== "flex") return; // only when modal open
+    if (e.key === "ArrowLeft") goPrev();
+    if (e.key === "ArrowRight") goNext();
+    if (e.key === "Escape") modal.style.display = "none";
+  });
+
+
+  // --- Close Modal ---
+  closeBtn.addEventListener("click", () => modal.style.display = "none");
+  modal.addEventListener("click", e => {
+    if (e.target === modal) modal.style.display = "none";
+  });
+});
+
+</script>
+
+
+
+</body>

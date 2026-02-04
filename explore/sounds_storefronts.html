@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work-Life in Canada</title>
+  <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'></link>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="left-group">
+     <div class="logo"><a href="/"><img src="../assets/img/logo.png" alt="Work Life Canada Logo" style="scale: 150%;"></a></div>
+    <nav>
+      <ul>
+        <li><a href="/stories">Stories</a></li>
+        <li><a href="/exhibits">Exhibits</a></li>
+        <li class="currentLink"><a href="/explore/images">Explore</a></li>
+      </ul>
+    </nav>
+    </div>
+    <div class="nav-right">
+      <a href="#">About</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </div>
+</header>
+
+<main class="stories-section">
+  <h1>EXPLORE</h1>
+  <p class="intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate</p>
+  <div class="explore-nav-wrap">
+    <nav class="explore-nav">
+      <a href="/explore/images"> IMAGES </a>
+      <a class="currentExplore" href="/explore/sounds"> SOUNDS </a>
+      <a href="/explore/filterResults/null_null_null"> PEOPLE </a>
+      <a href="/explore/places"> PLACES </a>
+    </nav>
+  </div>
+
+<div class="filter-controls">
+  <div class="filter-group">
+    <label for="tag-selector">Location of Sound:</label>
+    <select id="tag-selector">
+    </select>
+  </div>
+  <button id="tag-submit-btn" class="submit-button">Submit</button>
+</div>
+
+<!-- === Explore Grid === -->
+<div class="explore-grid">
+  
+  
+    
+  
+    
+  
+    
+  
+    
+    
+    
+      
+    
+  
+    
+    
+    
+      <div class="explore-item" data-person="Henri Feasson">
+        <img src="/assets/img/henriFeasson_img_soundCover.jpg" alt="Henri Feasson">
+        <div class="explore-overlay">
+          <h3>Henri Feasson</h3>
+          <p>- Listen -</p>
+        </div>
+      </div>
+      
+    
+  
+    
+  
+    
+    
+    
+      
+    
+  
+    
+    
+    
+      
+    
+      
+    
+  
+    
+    
+    
+      <div class="explore-item" data-person="Norie Sanchez">
+        <img src="/assets/img/norieSanchez_img_soundCover.jpg" alt="Norie Sanchez">
+        <div class="explore-overlay">
+          <h3>Norie Sanchez</h3>
+          <p>- Listen -</p>
+        </div>
+      </div>
+      
+    
+  
+    
+  
+    
+    
+    
+      
+    
+  
+    
+    
+    
+      
+    
+  
+</div>
+</main>
+
+<div id="explore-modal" class="explore-modal">
+  <span class="explore-close">&times;</span>
+<div class="explore-modal-content-sound">
+  
+
+  <div class="sound-modal-layout">
+
+    <!-- LEFT SIDE -->
+    <div class="sound-modal-left">
+      <h2 id="sound-modal-title"></h2>
+      <img id="sound-modal-cover" alt="">
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="sound-modal-right">
+      <div id="sound-modal-soundlist"></div>
+    </div>
+
+  </div>
+
+  <!-- Bottom-right “Story →” link -->
+  
+</div>
+<a id="sound-story-link" class="sound-story-link" href="#" target="_self"></a>
+</div>
+
+
+
+
+
+<script>
+  window.explorePeople = {
+    
+    
+    null: {
+      name: null,
+      firstname: null,
+      url: "/stories/davidFleming.html",
+      coverImg: null,
+      sounds: [
+        
+      ]
+    },
+    
+    "Abella C. Garcia": {
+      name: "Abella C. Garcia",
+      firstname: "Abella",
+      url: "/stories/abellaCGarcia.html",
+      coverImg: null,
+      sounds: [
+        
+      ]
+    },
+    
+    "Chris Wilson": {
+      name: "Chris Wilson",
+      firstname: "Chris",
+      url: "/stories/chrisWilson.html",
+      coverImg: null,
+      sounds: [
+        
+      ]
+    },
+    
+    "Dwane Everitt": {
+      name: "Dwane Everitt",
+      firstname: "Dwane",
+      url: "/stories/dwaneEveritt.html",
+      coverImg: "/assets/img/dwayneEveritt_img_soundCover.jpg",
+      sounds: [
+        
+          {
+            src: "/assets/audio/oneshots/AB02-DE-Sound1_SPOTSOUND.mp3",
+            caption: "Loud constant hum of a machine, metal clanking forcefully, high-pitched squeak, and faint low booms.",
+            tag_01: "Fields and Farms",
+            tag_02: null
+          }
+        
+      ]
+    },
+    
+    "Henri Feasson": {
+      name: "Henri Feasson",
+      firstname: "Henri",
+      url: "/stories/henriFeasson.html",
+      coverImg: "/assets/img/henriFeasson_img_soundCover.jpg",
+      sounds: [
+        
+          {
+            src: "/assets/audio/oneshots/ON02-HF-Sounds1_SPOTSOUND.mp3",
+            caption: "The clinking of glassware, shuffling footsteps swishing by, light background music, hiss and gurlge of an espresso steamer, employees talking indistinctly about service",
+            tag_01: "Storefronts and Counters",
+            tag_02: null
+          }
+        
+      ]
+    },
+    
+    "Javed Syed": {
+      name: "Javed Syed",
+      firstname: "Javed",
+      url: "/stories/javedSyed.html",
+      coverImg: null,
+      sounds: [
+        
+      ]
+    },
+    
+    "Kendra Waldner": {
+      name: "Kendra Waldner",
+      firstname: "Kendra",
+      url: "/stories/kendraWaldner.html",
+      coverImg: "/assets/img/kendraWaldner_img_soundCover.jpg",
+      sounds: [
+        
+          {
+            src: "/assets/audio/oneshots/AB01-KW-Sound2_SPOTSOUND.mp3",
+            caption: "Soft whooshing ambience of a light breeze, Kendra and Stan talk about checking their pens, thud of a door closing, crunch of boots on gravel and dirt, one deep soft moo of a cow.",
+            tag_01: "Fields and Farms",
+            tag_02: null
+          }
+        
+      ]
+    },
+    
+    "Neill Jenson": {
+      name: "Neill Jenson",
+      firstname: "Neill",
+      url: "/stories/neillJenson.html",
+      coverImg: "/assets/img/neillJenson_img_soundCover.jpg",
+      sounds: [
+        
+          {
+            src: "/assets/audio/loops/AB08-Neill-Sound1_LOOPED.mp3",
+            caption: "Soft rumble of an idling engine, light clicks and clacks, the 'psshh' sound of a hydraulic, the engine noise ramps up with a whir, more hydraulic pressure sounds, the engine rumbling becomes louder and softer as the driver accelerates and slows.",
+            tag_01: "Vehicles",
+            tag_02: null
+          },
+        
+          {
+            src: "/assets/audio/oneshots/AB08-NJ-Sound1_SPOTSOUND.mp3",
+            caption: "Plastic click, hard door slams with a thud, rustling around, jangle of keys, hight pitched beep, and forceful hum of a ramping up fan, deep distant rumble as the truck turns over and fires up.",
+            tag_01: "Vehicles",
+            tag_02: null
+          }
+        
+      ]
+    },
+    
+    "Norie Sanchez": {
+      name: "Norie Sanchez",
+      firstname: "Norie",
+      url: "/stories/norieSanchez.html",
+      coverImg: "/assets/img/norieSanchez_img_soundCover.jpg",
+      sounds: [
+        
+          {
+            src: "/assets/audio/loops/AB10-NS-Sound1_LOOP.mp3",
+            caption: "The hiss of steam, tap tap tapping, a harsher more forceful hiss, soft ambient hum of distant machines or an A/C, the same hiss, tap, hiss pattern repeats intermittently",
+            tag_01: "Storefronts and Counters",
+            tag_02: "Studios and Workshops"
+          }
+        
+      ]
+    },
+    
+    "Ramazan Nassery": {
+      name: "Ramazan Nassery",
+      firstname: "Ramazan",
+      url: "/stories/ramazanNassery.html",
+      coverImg: null,
+      sounds: [
+        
+      ]
+    },
+    
+    "Shane Miller": {
+      name: "Shane Miller",
+      firstname: "Shane",
+      url: "/stories/shaneMiller.html",
+      coverImg: "/assets/img/shaneMiller_img_soundCover.jpg",
+      sounds: [
+        
+          {
+            src: "/assets/audio/loops/AB03-SM-Sound1_LOOPED.mp3",
+            caption: "Rustling of clothing, metal lightly clanking in the wind, more deliberate metal on metal sound as mending tool meets wire fence, moments of silence mixed with the reverb of the clanking metal.",
+            tag_01: "Fields and Farms",
+            tag_02: null
+          }
+        
+      ]
+    },
+    
+    "William Waldner": {
+      name: "William Waldner",
+      firstname: "William",
+      url: "/stories/williamWaldner.html",
+      coverImg: "/assets/img/williamWaldner_img_soundCover.jpg",
+      sounds: [
+        
+          {
+            src: "/assets/audio/oneshots/AB05-WW-Sound2_SPOTSOUND.mp3",
+            caption: "The whoosh of wind blowing, the mechanical reproduction of a distressed coyote howl changing to a whimpering. The coyote sounds have a harsh, offensive, electrical quality. Wille explains how he uses the coyote caller machine to help hunt.",
+            tag_01: "Fields and Farms",
+            tag_02: null
+          }
+        
+      ]
+    }
+    
+  };
+</script>
+
+
+
+
+<script>
+const modal = document.getElementById("explore-modal");
+const closeBtn = document.querySelector(".explore-close");
+
+const titleEl = document.getElementById("sound-modal-title");
+const coverEl = document.getElementById("sound-modal-cover");
+const listEl = document.getElementById("sound-modal-soundlist");
+const storyLinkEl = document.getElementById("sound-story-link");
+  const TAG_LINKS = {
+    "All Sounds": "/explore/sounds",
+    "Storefronts and Counters": "/explore/sounds_storefronts",
+    "Studios and Workshops": "/explore/sounds_studios",
+    "Home and Office": "/explore/sounds_home",
+    "Factories and Facilities": "/explore/sounds_factories",
+    "Vehicles": "/explore/sounds_vehicles",
+    "Fields and Farms": "/explore/sounds_fields",
+    "Waterside": "/explore/sounds_waterside"
+    // ... add more as needed
+  };
+document.addEventListener("DOMContentLoaded", () => {
+
+
+
+  const selector = document.getElementById("tag-selector");
+  const submitBtn = document.getElementById("tag-submit-btn");
+
+  // Debug check
+  if (!selector) {
+    console.warn("Tag selector element not found.");
+    return;
+  }
+
+  // Populate dropdown
+  Object.keys(TAG_LINKS).forEach(tag => {
+    const option = document.createElement("option");
+    option.value = tag;
+    option.textContent = tag;
+    selector.appendChild(option);
+  });
+
+  // Click behavior
+  submitBtn.addEventListener("click", () => {
+    const selected = selector.value;
+
+    if (!selected) {
+      alert("Please select a tag first.");
+      return;
+    }
+
+    window.location.href = TAG_LINKS[selected];
+  });
+
+});
+
+
+document.querySelectorAll(".explore-item").forEach(item => {
+  item.addEventListener("click", () => {
+    const personName = item.dataset.person;
+    const person = window.explorePeople[personName];
+
+    if (!person) return;
+
+    // SET TITLE
+    titleEl.textContent = person.name;
+
+    // SET COVER IMAGE
+    coverEl.src = person.coverImg || "";
+
+    // SET STORY LINK
+    storyLinkEl.href = person.url;
+    storyLinkEl.textContent = `${person.firstname}'s Story →`;
+
+    // BUILD SOUND LIST
+    listEl.innerHTML = "";
+    person.sounds.forEach((sound, index) => {
+      const div = document.createElement("div");
+      div.className = "sound-item";
+
+      let tags = Object.keys(sound)
+        .filter(k => k.startsWith("tag_") && sound[k])
+        .map(k => sound[k]);
+
+      let tagHTML = "";
+      if (tags.length > 0) {
+        tagHTML = `
+          <div class="sound-tags">
+            ${tags.map(tag => {
+              const url = TAG_LINKS[tag] || "#";
+              return `<a class="sound-tag" href="${url}">${tag}</a>`;
+            }).join("")}
+          </div>
+        `;
+      }
+
+      div.innerHTML = `
+        <audio controls src="${sound.src}"></audio>
+
+        <div class="sound-caption-toggle" data-index="${index}">
+          <span class="arrow">&#8250;</span> About This Sound
+        </div>
+
+        <div class="sound-caption" id="caption-${index}">
+          ${tagHTML}
+          <p>${sound.caption}</p>
+        </div>
+      `;
+
+      listEl.appendChild(div);
+    });
+
+    // Dropdown behavior
+    listEl.querySelectorAll(".sound-caption-toggle").forEach(toggle => {
+      toggle.addEventListener("click", () => {
+        const idx = toggle.dataset.index;
+        const cap = document.getElementById(`caption-${idx}`);
+        cap.classList.toggle("open");
+        toggle.classList.toggle("open");
+
+      });
+    });
+
+    // Open modal
+modal.style.display = "block";
+
+
+  });
+});
+
+// Close modal
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+// Click outside closes modal
+window.addEventListener("click", e => {
+  if (e.target === modal) modal.style.display = "none";
+});
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const selector = document.getElementById("tag-selector");
+    if (selector) {
+      selector.value = "Storefronts and Counters";
+    }
+  });
+</script>
+
+</body>
