@@ -107,6 +107,7 @@ header .nav-right {
 .hero p {
   max-width: 800px;
   margin: 0 auto 30px;
+  font-size: 1.2em;
 }
 
 .gallery-container {
@@ -166,6 +167,58 @@ header .nav-right {
       }
 }
 
+/* Gallery pause/play indicator */
+.gallery-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 50%;
+}
+
+.gallery-container:hover .gallery-indicator {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+/* Pause icon (default) */
+.gallery-indicator::before {
+  content: '';
+  width: 40px;
+  height: 30px;
+  background: 
+    linear-gradient(to right, 
+      #fff 0%, #fff 25%, 
+      transparent 25%, transparent 45%,
+      #fff 45%, #fff 70%,
+      transparent 70%, transparent 100%);
+  border-radius: 0px;
+  margin-left: 13px;
+}
+
+/* Play icon (when paused) */
+.gallery-indicator.paused::before {
+  content: '';
+  width: 0;
+  height: 0;
+  background: transparent;
+  border-left: 25px solid #fff;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-radius: 0;
+  margin-left: 5px;
+}
+
 .explore-btn {
   display: inline-block;   /* ensure it participates in normal layout */
   margin-top: 22px;        /* or whatever spacing you need */
@@ -213,6 +266,7 @@ header .nav-right {
 
 .about-text p {
   margin-bottom: 15px;
+  font-size: 1.1em;
 }
 
 .about-text .learn-more {
@@ -633,7 +687,7 @@ header .nav-right {
   position: sticky;
   top: 0px;
   z-index: 100;
-  background: transparent; /* transparent so pseudo-element can provide background */
+  background: #fff; /* solid white background */
   padding: 0;
   width: 100%;
   position: -webkit-sticky; /* mobile support */
@@ -650,7 +704,7 @@ header .nav-right {
   top: 0;
   height: 0;
   pointer-events: none;
-  z-index: 1;
+  z-index: 10; /* ensure gradient sits above content */
   transition: height 0.3s ease, background 0.3s ease;
 }
 
@@ -688,12 +742,11 @@ header .nav-right {
 }
 
 .photo-pair.sticky-active .photo-item img {
-  max-width: 373px;
+  max-width: 250px;
 }
 
 .photo-item img:hover {
-  transform: scale(1.02);
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 .photo-captions {
@@ -747,7 +800,6 @@ header .nav-right {
 
 .story-section p {
   margin-bottom: 12px;
-  text-indent: 2em;
 }
 
 .story-section blockquote {

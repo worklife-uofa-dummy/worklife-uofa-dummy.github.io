@@ -119,7 +119,7 @@
 <div class="filter-controls">
   <!-- Dropdown 1: Occupation -->
   <div class="filter-group">
-    <label for="occupationSelect">Occupation <a href=https://noc.esdc.gc.ca/Structure/Hierarchy target="_blank">(NOC)</a>:</label>
+    <label for="occupationSelect">Occupation <a href=https://noc.esdc.gc.ca/Structure/Hierarchy target="_blank">(NOC)</a></label>
     <select id="occupationSelect">
       <option value="">---</option>
       <option value="natural_resources">Natural resources, agriculture and related production</option>
@@ -132,7 +132,7 @@
 
   <!-- Dropdown 2: Industry -->
   <div class="filter-group">
-    <label for="industrySelect">Industry <a href="https://www23.statcan.gc.ca/imdb/p3VD.pl?Function=getVD&TVD=1369825" target="_blank">(NAICS)</a>:</label>
+    <label for="industrySelect">Industry <a href="https://www23.statcan.gc.ca/imdb/p3VD.pl?Function=getVD&TVD=1369825" target="_blank">(NAICS)</a></label>
     <select id="industrySelect">
       <option value="">---</option>
       <option value="agriculture">Agriculture, forestry, fishing and hunting</option>
@@ -153,13 +153,15 @@
 
   <!-- Dropdown 3: Demographics -->
   <div class="filter-group">
-    <label for="demographicsSelect">Demographics:</label>
+    <label for="demographicsSelect">Demographics</label>
     <select id="demographicsSelect">
       <option value="">---</option>
       <option value="male">Men</option>
       <option value="female">Women</option>
       <option value="indigenous_people">Indigenous people</option>
       <option value="immigrant">Immigrants</option>
+      <option value="rural">Rural</option>
+      <option value="urban">Urban</option>
       <option value="20-39">20-39</option>
       <option value="40-59">40-59</option>
       <option value="60">60+</option>
@@ -205,7 +207,9 @@ const dropdownConfig = {
     'immigrant': 'Immigrants',
     '20-39': '20-39',
     '40-59': '40-59',
-    '60': '60'
+    '60': '60',
+    'urban': 'Urban',
+    'rural': 'Rural'
   }
 };
 
@@ -344,7 +348,7 @@ document.getElementById('submitBtn').addEventListener('click', function() {
     
     <a href="/stories/dwaneEveritt.html" class="story-card">
       <img src="/assets/img/dwayneEveritt.jpg">
-      <div class="overlay"><span>Dwane Everitt<br style="font-size:0.8em;"> - View - </span></div>
+      <div class="overlay"><span>Dwayne Everitt<br style="font-size:0.8em;"> - View - </span></div>
     </a>
     
     

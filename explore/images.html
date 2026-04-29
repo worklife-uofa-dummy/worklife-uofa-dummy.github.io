@@ -87,10 +87,10 @@
     
   
     
-      <div class="explore-item" data-person="Dwane Everitt">
-        <img src="/assets/img/dwayneEveritt.jpg" alt="Dwane Everitt">
+      <div class="explore-item" data-person="Dwayne Everitt">
+        <img src="/assets/img/dwayneEveritt.jpg" alt="Dwayne Everitt">
         <div class="explore-overlay">
-          <h3>Dwane Everitt</h3>
+          <h3>Dwayne Everitt</h3>
           <p>- View -</p>
         </div>
       </div>
@@ -288,9 +288,9 @@
       ]
     },
     
-    "Dwane Everitt": {
-      name: "Dwane Everitt",
-      firstname: "Dwane",
+    "Dwayne Everitt": {
+      name: "Dwayne Everitt",
+      firstname: "Dwayne",
       url: "/stories/dwaneEveritt.html",
       images: [
         
@@ -482,6 +482,23 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+  // === Randomize explore grid ===
+  function shuffleArray(arr) {
+    const shuffled = [...arr];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }
+
+  const explorerGrid = document.querySelector(".explore-grid");
+  const gridItems = Array.from(explorerGrid.querySelectorAll(".explore-item"));
+  const shuffledItems = shuffleArray(gridItems);
+  
+  explorerGrid.innerHTML = '';
+  shuffledItems.forEach(item => explorerGrid.appendChild(item));
+
   const modal = document.getElementById("explore-modal");
   const modalTitle = document.getElementById("explore-modal-title");
   const track = document.getElementById("explore-carousel-track");

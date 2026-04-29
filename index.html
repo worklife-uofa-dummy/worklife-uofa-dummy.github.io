@@ -24,7 +24,6 @@
     </div>
     <div class="nav-right">
       <a href="#">About</a>
-      <a href="#">Contact Us</a>
     </div>
   </div>
 </header>
@@ -32,9 +31,9 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <h1>Work Life</h1> <h2>in Canada</h2>
+    <p><h1>Work Life</h1> <h1 style="color:brown;">in Canada</h1></p>
     <p>
-      <strong>Work Life in Canada</strong> is a five-year research project that explores the diverse and changing social meanings of work through image, word, and sound. Funded by a SSHRC Insight Grant, our main aim is to develop a multimedia website featuring 100 work-life stories from working people across dozens of occupations and seven provinces and territories, including several Indigenous communities.
+      <strong>Work Life in Canada</strong> is a five-year research project that explores the diverse and changing social meanings of work through image, word, and sound. 
     </p>
   <div class="gallery-container">
     <div class="gallery-track" id="track">
@@ -257,8 +256,8 @@
     
     
       <div class="caption-pair">
-        <p>Dwane Everitt <br> Contract Operator<br>Heavy Oil Battery<br>Red Deer River Area, Alberta <br>2016</p>
-        <p>Dwane Everitt <br> Contract Operator<br>Oil Well Servicing<br>Red Deer River Area, Alberta <br>2021</p>
+        <p>Dwayne Everitt <br> Contract Operator<br>Heavy Oil Battery<br>Red Deer River Area, Alberta <br>2016</p>
+        <p>Dwayne Everitt <br> Contract Operator<br>Oil Well Servicing<br>Red Deer River Area, Alberta <br>2021</p>
       </div>
     
     
@@ -343,6 +342,31 @@
   </footer>
 
 <script>
+// Gallery auto-scroll pause/resume functionality
+document.addEventListener("DOMContentLoaded", () => {
+  const galleryContainer = document.querySelector('.gallery-container');
+  const galleryTrack = document.querySelector('.gallery-track');
+
+  if (!galleryContainer || !galleryTrack) return;
+
+  let isScrollPaused = false;
+
+  // Create pause/play indicator
+  const indicator = document.createElement('div');
+  indicator.className = 'gallery-indicator';
+  galleryContainer.appendChild(indicator);
+
+  galleryContainer.addEventListener('click', (e) => {
+    e.stopPropagation();
+    isScrollPaused = !isScrollPaused;
+    galleryTrack.style.animationPlayState = isScrollPaused ? 'paused' : 'running';
+    galleryContainer.style.cursor = isScrollPaused ? 'pointer' : 'auto';
+    indicator.classList.toggle('paused', isScrollPaused);
+  });
+});
+</script>
+
+<script>
 document.addEventListener("DOMContentLoaded", () => {
   const track = document.querySelector('.carousel-track');
   const slides = Array.from(track.children);
@@ -351,6 +375,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const captionPairs = document.querySelectorAll("#caption-container .caption-pair");
 
   let currentIndex = 0;
+  let isPaused = false;
 
   function updateCarousel() {
     const slideWidth = slides[0].getBoundingClientRect().width;
@@ -376,7 +401,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (nextBtn) nextBtn.addEventListener('click', showNextSlide);
   if (prevBtn) prevBtn.addEventListener('click', showPrevSlide);
+// Pause/unpause carousel on track click
+  track.addEventListener('click', (e) => {
+    e.stopPropagation();
+    isPaused = !isPaused;
+    track.style.cursor = isPaused ? 'pointer' : 'auto';
+  });
 
+  
   window.addEventListener('resize', updateCarousel);
 
   updateCarousel(); // init

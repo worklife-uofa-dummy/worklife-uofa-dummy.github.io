@@ -216,6 +216,21 @@ Having been remarried, Chris has begun the process of winding down his involveme
 .tooltip { position:absolute; left:50%; top:auto; bottom: calc(100% + 10px); transform: translateX(-50%); background:#fff; border:1px solid #ddd; padding:10px 12px; width:260px; box-shadow:0 6px 20px rgba(0,0,0,0.12); display:none; z-index:1200; color:#222; font-size:0.95rem; }
 .tooltip-wrap:hover .tooltip, .tooltip-wrap.open .tooltip { display:block; }
 .spot-tooltip { width:220px; }
+
+/* Global Volume Control */
+.volume-control { display:flex; align-items:center; gap:2px; position:relative; }
+.volume-speaker { background:#fff; border:1px solid #ccc; border-radius:50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center; color:#a30000; cursor:pointer; box-shadow:0 2px 6px rgba(0, 0, 0, 0.08); transition:all 0.15s ease; position:relative; }
+.volume-speaker:focus { outline:2px solid rgba(0,0,0,0.12); }
+.volume-speaker:hover { background:#f8f8f8; }
+.speaker-icon .wave { display:none; }
+.speaker-icon.volume-low .wave-1 { display:block; }
+.speaker-icon.volume-medium .wave-1, .speaker-icon.volume-medium .wave-2 { display:block; }
+.speaker-icon.volume-high .wave { display:block; }
+.volume-display { position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); font-size:0.85rem; font-weight:bold; color:#a30000; background:#fff; padding:2px 6px; border-radius:3px; white-space:nowrap; pointer-events:none; opacity:0; transition:opacity 0.6s ease-out; z-index:10; }
+.volume-buttons { display:flex; flex-direction:column; gap:2px; }
+.volume-btn { background:#fff; border:none; border-radius:4px; width:36px; height:20px; display:flex; align-items:center; justify-content:center; color:#a30000; cursor:pointer; box-shadow:0 2px 6px rgba(0, 0, 0, 0.08); transition:all 0.15s ease; padding:0; }
+.volume-btn:hover { background:#f8f8f8; }
+.volume-btn:focus { outline:2px solid rgba(0,0,0,0.12); }
 </style>
 
 <script>
@@ -321,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Change `SPACER_FACTOR` (0..1) to control spacer height relative to the container.
   // Smaller values reduce the spacer height (less jump when sticking).
-  const SPACER_FACTOR = 0.65; // 25% of container height
+  const SPACER_FACTOR = 0.44; // reduced to decrease empty space
 
   // compute the scrollY at which sticky should engage
   const pairRect = photoPairContainer.getBoundingClientRect();
@@ -444,6 +459,8 @@ if (audio && playPauseBtn && playIcon && pauseIcon) {
   playPauseBtn.addEventListener('click', () => {
     if (audio.paused) {
       audio.play();
+      // Apply global volume when starting playback
+      if (window.applyGlobalVolume) window.applyGlobalVolume();
     } else {
       audio.pause();
     }
@@ -473,6 +490,163 @@ if (audio && playPauseBtn && playIcon && pauseIcon) {
   function startVisualizer() {}
   function stopVisualizer() {}
 }
+</script>
+
+<script>
+// Global Volume Control
+document.addEventListener('DOMContentLoaded', () => {
+  const volumeControl = document.getElementById('volumeControl');
+  const volumeSpeaker = document.getElementById('volumeSpeaker');
+  const volumeUp = document.getElementById('volumeUp');
+  const volumeDown = document.getElementById('volumeDown');
+  const volumeDisplay = document.getElementById('volumeDisplay');
+  const speakerIcon = document.querySelector('.speaker-icon');
+  const mutedIcon = document.querySelector('.muted-icon');
+
+  // Get all audio elements on the page
+  const getAllAudios = () => Array.from(document.querySelectorAll('audio'));
+
+  // State
+  let currentVolume = 0.8; // Default 80%
+  let isMuted = false;
+  let volumeBeforeMute = 0.8; // Remember volume when unmuting
+  let volumeDisplayTimeout = null; // Track timeout for fade-out
+
+  // Initialize all audio elements to 80% volume
+  const initializeVolumes = () => {
+    getAllAudios().forEach(audio => {
+      audio.volume = currentVolume;
+    });
+  };
+
+  // Update icon based on mute state or volume level
+  const updateIcon = () => {
+    if (isMuted || currentVolume <= 0) {
+      speakerIcon.style.display = 'none';
+      mutedIcon.style.display = 'block';
+      speakerIcon.classList.remove('volume-high', 'volume-medium', 'volume-low');
+    } else {
+      speakerIcon.style.display = 'block';
+      mutedIcon.style.display = 'none';
+      
+      // Update volume indicator waves based on threshold
+      speakerIcon.classList.remove('volume-high', 'volume-medium', 'volume-low');
+      if (currentVolume >= 0.8) {
+        speakerIcon.classList.add('volume-high');
+      } else if (currentVolume >= 0.5) {
+        speakerIcon.classList.add('volume-medium');
+      } else if (currentVolume > 0) {
+        speakerIcon.classList.add('volume-low');
+      }
+    }
+  };
+
+  // Apply volume to all audio elements (except main audio if clip is playing)
+  const applyVolume = () => {
+    const volumeToApply = isMuted ? 0 : currentVolume;
+    const isClipActive = window.isClipPlaying || false;
+    
+    getAllAudios().forEach(audio => {
+      // Skip main audio if a clip is currently playing to keep it muted during clip playback
+      if (isClipActive && audio.classList.contains('main-audio')) {
+        return;
+      }
+      audio.volume = volumeToApply;
+    });
+    
+    // Also apply volume to the active interview clip if one is playing
+    if (isClipActive && window.activeClipAudio) {
+      window.activeClipAudio.volume = volumeToApply;
+    }
+  };
+
+  // Expose applyVolume globally so other scripts can call it
+  window.applyGlobalVolume = applyVolume;
+
+  // Expose a function to get the current effective global volume (accounting for mute)
+  window.getGlobalVolume = () => {
+    return isMuted ? 0 : currentVolume;
+  };
+
+  // Display volume percentage briefly (only for +/- interactions, not mute)
+  const showVolumeDisplay = () => {
+    const percent = Math.round(currentVolume * 100);
+    volumeDisplay.textContent = percent + '%';
+    
+    // Clear any pending timeout
+    if (volumeDisplayTimeout) clearTimeout(volumeDisplayTimeout);
+    
+    // Fade in immediately
+    volumeDisplay.style.opacity = '1';
+    
+    // Schedule fade out after 1 second of inactivity
+    volumeDisplayTimeout = setTimeout(() => {
+      volumeDisplay.style.opacity = '0';
+      volumeDisplayTimeout = null;
+    }, 1000);
+  };
+
+  // Increase volume by 10%
+  volumeUp.addEventListener('click', () => {
+    // If at volume 0 (naturally muted), allow unmuting by increasing
+    if (currentVolume === 0) {
+      isMuted = false;
+      currentVolume = 0.1;
+    } else if (isMuted) {
+      // If speaker was muted, unmute and restore previous volume
+      isMuted = false;
+      currentVolume = volumeBeforeMute;
+    } else {
+      // Normal increase
+      currentVolume = Math.min(1, currentVolume + 0.1);
+    }
+    // Round to 1 decimal place to avoid floating point errors
+    currentVolume = Math.round(currentVolume * 10) / 10;
+    
+    applyVolume();
+    updateIcon();
+    showVolumeDisplay();
+  });
+
+  // Decrease volume by 10%
+  volumeDown.addEventListener('click', () => {
+    if (isMuted) {
+      // If speaker was muted, unmute first and set to previous volume
+      isMuted = false;
+      currentVolume = volumeBeforeMute;
+    } else {
+      // Normal decrease
+      currentVolume = Math.max(0, currentVolume - 0.1);
+    }
+    // Round to 1 decimal place to avoid floating point errors
+    currentVolume = Math.round(currentVolume * 10) / 10;
+    
+    applyVolume();
+    updateIcon();
+    showVolumeDisplay();
+  });
+
+  // Toggle mute on speaker button click
+  volumeSpeaker.addEventListener('click', () => {
+    isMuted = !isMuted;
+    
+    if (isMuted) {
+      // Mute: remember current volume
+      volumeBeforeMute = currentVolume;
+    } else {
+      // Unmute: restore previous volume
+      currentVolume = volumeBeforeMute;
+    }
+    
+    applyVolume();
+    updateIcon();
+    // Do NOT show volume display on mute/unmute
+  });
+
+  // Initialize on load
+  initializeVolumes();
+  updateIcon();
+});
 </script>
 
 <script>
@@ -591,9 +765,10 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       // Play ambience
       mainAudios.forEach(a => {
-        a.volume = 1;
         a.play();
       });
+      // Apply global volume when starting playback
+      if (window.applyGlobalVolume) window.applyGlobalVolume();
       startVisualizer();
       playIcon.style.display = "none";
       pauseIcon.style.display = "block";
@@ -637,6 +812,7 @@ document.addEventListener("DOMContentLoaded", () => {
         stopIcon.style.display = "none";
         clearInterval(progressInterval);
         setProgress(0);
+        window.isClipPlaying = false;
         if (playPauseBtn) unfreezeMainAudioUI();
         return;
       }
@@ -649,13 +825,24 @@ document.addEventListener("DOMContentLoaded", () => {
       if (playPauseBtn) freezeMainAudioUI();
       if (audioBar) audioBar.classList.add("clip-active", "disabled");
 
+      // Get the current global volume level for fading clips
+      const getGlobalVolume = () => window.getGlobalVolume ? window.getGlobalVolume() : 0.8;
+      const globalVol = getGlobalVolume();
+
       if (wasAmbiencePlaying && mainAudios.length > 0) {
         mainAudios.forEach(a => fadeAudio(a, 0, 1500));
       }
 
-      fadeAudio(clip, 1, 1500);
+      // Start clip at 0 volume and fade to global volume
+      clip.volume = 0;
+      fadeAudio(clip, globalVol, 1500);
       clip.play();
       activeClip = clip;
+      
+      // Mark that a clip is playing so volume controls don't unmute main audio
+      window.isClipPlaying = true;
+      // Expose the active clip so volume controls can adjust its volume
+      window.activeClipAudio = clip;
 
       playIcon.style.display = "none";
       stopIcon.style.display = "block";
@@ -674,13 +861,20 @@ document.addEventListener("DOMContentLoaded", () => {
         playIcon.style.display = "block";
         stopIcon.style.display = "none";
         fadeAudio(clip, 0, 1000);
+        
+        // Mark that clip is no longer playing
+        window.isClipPlaying = false;
 
         // only resume ambience if it was playing before
        if (activeClip === clip) {
           if (wasAmbiencePlaying && mainAudios.length > 0) {
+            // Get the current global volume level to fade to
+            const getGlobalVolume = () => window.getGlobalVolume ? window.getGlobalVolume() : 0.8;
+            const globalVol = getGlobalVolume();
+            
             mainAudios.forEach(a => {
               a.play();
-              fadeAudio(a, 1, 1500);
+              fadeAudio(a, globalVol, 1500);
             });
             if (visualizer) startVisualizer();
             isMainAudioPlaying = true;

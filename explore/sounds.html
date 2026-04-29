@@ -42,7 +42,7 @@
 
 <div class="filter-controls">
   <div class="filter-group">
-    <label for="tag-selector">Location of Sound:</label>
+    <label for="tag-selector">Location of Sound</label>
     <select id="tag-selector">
     </select>
   </div>
@@ -70,10 +70,10 @@
     
   
     
-      <div class="explore-item" data-person="Dwane Everitt">
-        <img src="/assets/img/dwayneEveritt_img_soundCover.jpg" alt="Dwane Everitt">
+      <div class="explore-item" data-person="Dwayne Everitt">
+        <img src="/assets/img/dwayneEveritt_img_soundCover.jpg" alt="Dwayne Everitt">
         <div class="explore-overlay">
-          <h3>Dwane Everitt</h3>
+          <h3>Dwayne Everitt</h3>
           <p>- Listen -</p>
         </div>
       </div>
@@ -227,9 +227,9 @@
       ]
     },
     
-    "Dwane Everitt": {
-      name: "Dwane Everitt",
-      firstname: "Dwane",
+    "Dwayne Everitt": {
+      name: "Dwayne Everitt",
+      firstname: "Dwayne",
       url: "/stories/dwaneEveritt.html",
       coverImg: "/assets/img/dwayneEveritt_img_soundCover.jpg",
       sounds: [
@@ -254,6 +254,13 @@
           {
             src: "/assets/audio/oneshots/ON02-HF-Sounds1_SPOTSOUND.mp3",
             caption: "The clinking of glassware, shuffling footsteps swishing by, light background music, hiss and gurlge of an espresso steamer, employees talking indistinctly about service",
+            tag_01: "Storefronts and Counters",
+            tag_02: null
+          },
+        
+          {
+            src: "/assets/audio/loops/ON02-HF-Sounds5_LOOPED.mp3",
+            caption: "Classic rock radio and the muted rumble of traffic in the background, the zip of a clothing zipper, faint talking, a low rumbling and chugging fades in as a train approaches and then fades out again as it moves into the distance, beeping of an appliance, another train passes, a women says 'alright, let's giddy up kids, let's rock and roll'",
             tag_01: "Storefronts and Counters",
             tag_02: null
           }
@@ -434,6 +441,28 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+// === Randomize explore grid ===
+function shuffleArray(arr) {
+  const shuffled = [...arr];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const explorerGrid = document.querySelector(".explore-grid");
+  if (explorerGrid) {
+    const gridItems = Array.from(explorerGrid.querySelectorAll(".explore-item"));
+    const shuffledItems = shuffleArray(gridItems);
+    
+    explorerGrid.innerHTML = '';
+    shuffledItems.forEach(item => explorerGrid.appendChild(item));
+  }
+});
+
+
 document.querySelectorAll(".explore-item").forEach(item => {
   item.addEventListener("click", () => {
     const personName = item.dataset.person;
@@ -506,15 +535,49 @@ modal.style.display = "block";
 
   });
 });
+</script>
+
+<script>
+// Function to fade out audio over 0.5 seconds
+function fadeOutAudio(audio) {
+  const fadeTime = 500; // 0.5 seconds in milliseconds
+  const fadeInterval = 50; // update every 50ms
+  const totalSteps = fadeTime / fadeInterval;
+  let currentStep = 0;
+  const initialVolume = audio.volume;
+  
+  const fade = setInterval(() => {
+    currentStep++;
+    const progress = currentStep / totalSteps;
+    audio.volume = initialVolume * (1 - progress);
+    
+    if (currentStep >= totalSteps) {
+      clearInterval(fade);
+      audio.pause();
+      audio.currentTime = 0;
+      audio.volume = initialVolume; // Reset volume for next play
+    }
+  }, fadeInterval);
+}
 
 // Close modal
 closeBtn.addEventListener("click", () => {
+  // Fade out all audio
+  modal.querySelectorAll("audio").forEach(audio => {
+    fadeOutAudio(audio);
+  });
   modal.style.display = "none";
 });
 
 // Click outside closes modal
 window.addEventListener("click", e => {
-  if (e.target === modal) modal.style.display = "none";
+  if (e.target === modal) {
+    // Fade out all audio
+    modal.querySelectorAll("audio").forEach(audio => {
+      fadeOutAudio(audio);
+    });
+    modal.style.display = "none";
+  }
 });
 </script>
 
