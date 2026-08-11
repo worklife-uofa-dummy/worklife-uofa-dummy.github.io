@@ -132,7 +132,7 @@
   <p>"Because I said, I don't want you, I didn't get you here in Canada to provide for me. I wanted to work for yourself so that you, you when you grow older, you have something for yourself. And once I see you, like settled and doing what you're doing, doing good on what you do, then I'm I can say that I did my job as a mom."</p>
   </figure>
 
-  <button class="clip-btn" data-src="/assets/audio/clips/cindyMujiGida_clip_03_because.mp3" aria-label="Play clip">
+  <button class="clip-btn" data-src="/assets/audio/clips/cindyMujiGida_clip_02_because.mp3" aria-label="Play clip">
   <svg class="progress-ring" width="48" height="48">
     <circle class="ring-bg" cx="24" cy="24" r="20" />
     <circle class="ring-progress" cx="24" cy="24" r="20" />
@@ -155,7 +155,7 @@
   <p>"Honesty is very important. Because that's the only thing you have, actually really, is what he said, you don't have money. You don't have, you don't have money. So all you all you have is honesty. So wherever you go, you go make sure you're honest with that. Whatever you do. Because then that's what that's what all my mind every time everywhere I go."</p>
   </figure>
 
-  <button class="clip-btn" data-src="/assets/audio/clips/cindyMujiGida_clip_02_honesty.mp3" aria-label="Play clip">
+  <button class="clip-btn" data-src="/assets/audio/clips/cindyMujiGida_clip_03_honesty.mp3" aria-label="Play clip">
   <svg class="progress-ring" width="48" height="48">
     <circle class="ring-bg" cx="24" cy="24" r="20" />
     <circle class="ring-progress" cx="24" cy="24" r="20" />
@@ -267,7 +267,10 @@
 <style>
 /* Spot-sound widget styles (keeps design language of existing audio bar) */
 .audio-bar .audio-controls { display:flex; align-items:center; justify-content:center; gap:18px; }
-.spot-widget { display:flex; align-items:center; gap:12px; color: inherit; }
+.spot-widget { display:flex; align-items:center; gap:12px; color: inherit; transition: opacity 0.2s ease, filter 0.2s ease; }
+.spot-widget.disabled { opacity: 0.5; filter: grayscale(0.8); pointer-events: none; }
+.spot-widget.disabled .spot-play { background: #e7e7e7; color: #7a7a7a; box-shadow: none; }
+.spot-widget.disabled .spot-timeline { opacity: 0.7; }
 .spot-play { background: #fff; border: 1px solid #ccc; border-radius: 50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center; color: #a30000; cursor:pointer; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); transition: all 0.15s ease; }
 .spot-play:focus { outline: 2px solid rgba(0,0,0,0.12); }
 .spot-timeline { position:relative; width:180px; height:14px; display:block; }
@@ -571,16 +574,52 @@ document.addEventListener('DOMContentLoaded', () => {
   const getAllAudios = () => Array.from(document.querySelectorAll('audio'));
 
   // State
+  const STORAGE_KEY = 'worklife-story-global-volume';
   let currentVolume = 0.8; // Default 80%
   let isMuted = false;
   let volumeBeforeMute = 0.8; // Remember volume when unmuting
   let volumeDisplayTimeout = null; // Track timeout for fade-out
 
-  // Initialize all audio elements to 80% volume
+  const readStoredVolumeState = () => {
+    try {
+      const savedState = localStorage.getItem(STORAGE_KEY);
+      if (!savedState) return null;
+
+      const parsedState = JSON.parse(savedState);
+      if (typeof parsedState?.volume === 'number' && !Number.isNaN(parsedState.volume)) {
+        return parsedState;
+      }
+    } catch (error) {
+      console.warn('Unable to restore saved volume state', error);
+    }
+
+    return null;
+  };
+
+  const persistVolumeState = () => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        volume: currentVolume,
+        isMuted,
+        volumeBeforeMute
+      }));
+    } catch (error) {
+      console.warn('Unable to persist volume state', error);
+    }
+  };
+
+  const savedVolumeState = readStoredVolumeState();
+  if (savedVolumeState) {
+    currentVolume = Math.max(0, Math.min(1, savedVolumeState.volume ?? 0.8));
+    currentVolume = Math.round(currentVolume * 10) / 10;
+    isMuted = Boolean(savedVolumeState.isMuted);
+    volumeBeforeMute = Math.max(0, Math.min(1, savedVolumeState.volumeBeforeMute ?? currentVolume));
+    volumeBeforeMute = Math.round(volumeBeforeMute * 10) / 10;
+  }
+
+  // Initialize all audio elements to the stored or default volume
   const initializeVolumes = () => {
-    getAllAudios().forEach(audio => {
-      audio.volume = currentVolume;
-    });
+    applyVolume();
   };
 
   // Update icon based on mute state or volume level
@@ -670,6 +709,7 @@ document.addEventListener('DOMContentLoaded', () => {
     applyVolume();
     updateIcon();
     showVolumeDisplay();
+    persistVolumeState();
   });
 
   // Decrease volume by 10%
@@ -688,6 +728,7 @@ document.addEventListener('DOMContentLoaded', () => {
     applyVolume();
     updateIcon();
     showVolumeDisplay();
+    persistVolumeState();
   });
 
   // Toggle mute on speaker button click
@@ -704,12 +745,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     applyVolume();
     updateIcon();
+    persistVolumeState();
     // Do NOT show volume display on mute/unmute
   });
 
   // Initialize on load
   initializeVolumes();
   updateIcon();
+  persistVolumeState();
 });
 </script>
 
@@ -768,7 +811,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let isMainAudioPlaying = false; // ✅ Manual flag for ambience state
 
   // --- Fade helper ---
-  function fadeAudio(el, to, duration = 1000) {
+  function fadeAudio(el, to, duration = 1000, onComplete) {
     const step = 50;
     const diff = to - el.volume;
     const steps = duration / step;
@@ -778,6 +821,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if ((delta > 0 && el.volume >= to) || (delta < 0 && el.volume <= to)) {
         el.volume = to;
         clearInterval(fadeTimer);
+        if (onComplete) onComplete();
       }
     }, step);
   }
@@ -815,6 +859,33 @@ document.addEventListener("DOMContentLoaded", () => {
     if (playPauseBtn) playPauseBtn.classList.remove("frozen");
     if (visualizer) visualizer.classList.remove("frozen");
     if (playPauseBtn) playPauseBtn.style.pointerEvents = "auto";
+  }
+
+  function setSpotWidgetsDisabled(disabled) {
+    document.querySelectorAll('.spot-widget').forEach(widget => {
+      widget.classList.toggle('disabled', disabled);
+    });
+  }
+
+  function getSpotAudioForWidget(widget) {
+    const nestedAudio = widget.querySelector('audio');
+    if (nestedAudio) return nestedAudio;
+
+    const widgetId = widget.id || '';
+    if (!widgetId) return null;
+
+    return document.getElementById(widgetId.replace('Widget', 'Audio'));
+  }
+
+  function resetSpotWidgetUI(widget) {
+    const playButton = widget.querySelector('.spot-play');
+    const playIcon = playButton?.querySelector('.spotPlayIcon');
+    const stopIcon = playButton?.querySelector('.spotStopIcon');
+    const circle = widget.querySelector('.spot-circle');
+
+    if (playIcon) playIcon.style.display = 'block';
+    if (stopIcon) stopIcon.style.display = 'none';
+    if (circle) circle.style.left = '0%';
   }
 
   // --- Main play/pause button ---
@@ -888,6 +959,23 @@ document.addEventListener("DOMContentLoaded", () => {
       if (visualizer) stopVisualizer();
       if (playPauseBtn) freezeMainAudioUI();
       if (audioBar) audioBar.classList.add("clip-active", "disabled");
+      setSpotWidgetsDisabled(true);
+
+      document.querySelectorAll('.spot-widget').forEach(widget => {
+        const spotAudio = getSpotAudioForWidget(widget);
+        if (!spotAudio) return;
+
+        if (!spotAudio.paused) {
+          spotAudio.pause();
+          spotAudio.currentTime = 0;
+          spotAudio.volume = 1;
+          resetSpotWidgetUI(widget);
+        } else {
+          spotAudio.currentTime = 0;
+          spotAudio.volume = 1;
+          resetSpotWidgetUI(widget);
+        }
+      });
 
       // Get the current global volume level for fading clips
       const getGlobalVolume = () => window.getGlobalVolume ? window.getGlobalVolume() : 0.8;
@@ -948,6 +1036,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (audioBar) audioBar.classList.remove("clip-active", "disabled");
           if (playPauseBtn) unfreezeMainAudioUI();
+          setSpotWidgetsDisabled(false);
+          document.querySelectorAll('.spot-widget').forEach(widget => {
+            const spotAudio = getSpotAudioForWidget(widget);
+            if (!spotAudio) return;
+            spotAudio.currentTime = 0;
+            spotAudio.volume = 1;
+            resetSpotWidgetUI(widget);
+          });
           activeClip = null;
         }
       }

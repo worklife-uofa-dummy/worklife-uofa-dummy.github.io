@@ -66,7 +66,7 @@
   <p>"Summertime all our buses are like half of the people are not taking buses. On winter they came back, they come back to buses because they can’t drive. But I can bring you home safely, I can take you to work safely. Why not? I like it. I like the power, like these buses are just planes, they just can't fly. Everything else is same, they’re all same systems."</p>
   </figure>
 
-  <button class="clip-btn" data-src="/assets/audio/clips/javedSyed_clip_02_summertime.mp3" aria-label="Play clip">
+  <button class="clip-btn" data-src="/assets/audio/clips/javedSyed_clip_01_summertime.mp3" aria-label="Play clip">
   <svg class="progress-ring" width="48" height="48">
     <circle class="ring-bg" cx="24" cy="24" r="20" />
     <circle class="ring-progress" cx="24" cy="24" r="20" />
@@ -139,7 +139,7 @@
   <p>"It's not that my life, work is part of my life. No. My life is part of my work. That's how it works for somebody who's working with a contract in this city. I adjust my life according to my work. And there is not much I can adjust, so slowly, slowly, I lost all my friends, all the people I know. Because I'm working in the morning, I'm working in the afternoon, evening. Every day for 21 days. I'm working on the weekend with the same pay, mind you. There is no extra pay for working on the weekend. Sunday, Saturday, same amount of money I'm getting for one run each day, you know. So why, my reason to work is, one thing is that I want to provide for my family, definitely, right."</p>
   </figure>
 
-  <button class="clip-btn" data-src="/assets/audio/clips/javedSyed_clip_01_life.mp3" aria-label="Play clip">
+  <button class="clip-btn" data-src="/assets/audio/clips/javedSyed_clip_02_life.mp3" aria-label="Play clip">
   <svg class="progress-ring" width="48" height="48">
     <circle class="ring-bg" cx="24" cy="24" r="20" />
     <circle class="ring-progress" cx="24" cy="24" r="20" />
@@ -193,7 +193,10 @@
 <style>
 /* Spot-sound widget styles (keeps design language of existing audio bar) */
 .audio-bar .audio-controls { display:flex; align-items:center; justify-content:center; gap:18px; }
-.spot-widget { display:flex; align-items:center; gap:12px; color: inherit; }
+.spot-widget { display:flex; align-items:center; gap:12px; color: inherit; transition: opacity 0.2s ease, filter 0.2s ease; }
+.spot-widget.disabled { opacity: 0.5; filter: grayscale(0.8); pointer-events: none; }
+.spot-widget.disabled .spot-play { background: #e7e7e7; color: #7a7a7a; box-shadow: none; }
+.spot-widget.disabled .spot-timeline { opacity: 0.7; }
 .spot-play { background: #fff; border: 1px solid #ccc; border-radius: 50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center; color: #a30000; cursor:pointer; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); transition: all 0.15s ease; }
 .spot-play:focus { outline: 2px solid rgba(0,0,0,0.12); }
 .spot-timeline { position:relative; width:180px; height:14px; display:block; }
@@ -497,16 +500,52 @@ document.addEventListener('DOMContentLoaded', () => {
   const getAllAudios = () => Array.from(document.querySelectorAll('audio'));
 
   // State
+  const STORAGE_KEY = 'worklife-story-global-volume';
   let currentVolume = 0.8; // Default 80%
   let isMuted = false;
   let volumeBeforeMute = 0.8; // Remember volume when unmuting
   let volumeDisplayTimeout = null; // Track timeout for fade-out
 
-  // Initialize all audio elements to 80% volume
+  const readStoredVolumeState = () => {
+    try {
+      const savedState = localStorage.getItem(STORAGE_KEY);
+      if (!savedState) return null;
+
+      const parsedState = JSON.parse(savedState);
+      if (typeof parsedState?.volume === 'number' && !Number.isNaN(parsedState.volume)) {
+        return parsedState;
+      }
+    } catch (error) {
+      console.warn('Unable to restore saved volume state', error);
+    }
+
+    return null;
+  };
+
+  const persistVolumeState = () => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        volume: currentVolume,
+        isMuted,
+        volumeBeforeMute
+      }));
+    } catch (error) {
+      console.warn('Unable to persist volume state', error);
+    }
+  };
+
+  const savedVolumeState = readStoredVolumeState();
+  if (savedVolumeState) {
+    currentVolume = Math.max(0, Math.min(1, savedVolumeState.volume ?? 0.8));
+    currentVolume = Math.round(currentVolume * 10) / 10;
+    isMuted = Boolean(savedVolumeState.isMuted);
+    volumeBeforeMute = Math.max(0, Math.min(1, savedVolumeState.volumeBeforeMute ?? currentVolume));
+    volumeBeforeMute = Math.round(volumeBeforeMute * 10) / 10;
+  }
+
+  // Initialize all audio elements to the stored or default volume
   const initializeVolumes = () => {
-    getAllAudios().forEach(audio => {
-      audio.volume = currentVolume;
-    });
+    applyVolume();
   };
 
   // Update icon based on mute state or volume level
@@ -596,6 +635,7 @@ document.addEventListener('DOMContentLoaded', () => {
     applyVolume();
     updateIcon();
     showVolumeDisplay();
+    persistVolumeState();
   });
 
   // Decrease volume by 10%
@@ -614,6 +654,7 @@ document.addEventListener('DOMContentLoaded', () => {
     applyVolume();
     updateIcon();
     showVolumeDisplay();
+    persistVolumeState();
   });
 
   // Toggle mute on speaker button click
@@ -630,12 +671,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     applyVolume();
     updateIcon();
+    persistVolumeState();
     // Do NOT show volume display on mute/unmute
   });
 
   // Initialize on load
   initializeVolumes();
   updateIcon();
+  persistVolumeState();
 });
 </script>
 
@@ -694,7 +737,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let isMainAudioPlaying = false; // ✅ Manual flag for ambience state
 
   // --- Fade helper ---
-  function fadeAudio(el, to, duration = 1000) {
+  function fadeAudio(el, to, duration = 1000, onComplete) {
     const step = 50;
     const diff = to - el.volume;
     const steps = duration / step;
@@ -704,6 +747,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if ((delta > 0 && el.volume >= to) || (delta < 0 && el.volume <= to)) {
         el.volume = to;
         clearInterval(fadeTimer);
+        if (onComplete) onComplete();
       }
     }, step);
   }
@@ -741,6 +785,33 @@ document.addEventListener("DOMContentLoaded", () => {
     if (playPauseBtn) playPauseBtn.classList.remove("frozen");
     if (visualizer) visualizer.classList.remove("frozen");
     if (playPauseBtn) playPauseBtn.style.pointerEvents = "auto";
+  }
+
+  function setSpotWidgetsDisabled(disabled) {
+    document.querySelectorAll('.spot-widget').forEach(widget => {
+      widget.classList.toggle('disabled', disabled);
+    });
+  }
+
+  function getSpotAudioForWidget(widget) {
+    const nestedAudio = widget.querySelector('audio');
+    if (nestedAudio) return nestedAudio;
+
+    const widgetId = widget.id || '';
+    if (!widgetId) return null;
+
+    return document.getElementById(widgetId.replace('Widget', 'Audio'));
+  }
+
+  function resetSpotWidgetUI(widget) {
+    const playButton = widget.querySelector('.spot-play');
+    const playIcon = playButton?.querySelector('.spotPlayIcon');
+    const stopIcon = playButton?.querySelector('.spotStopIcon');
+    const circle = widget.querySelector('.spot-circle');
+
+    if (playIcon) playIcon.style.display = 'block';
+    if (stopIcon) stopIcon.style.display = 'none';
+    if (circle) circle.style.left = '0%';
   }
 
   // --- Main play/pause button ---
@@ -814,6 +885,23 @@ document.addEventListener("DOMContentLoaded", () => {
       if (visualizer) stopVisualizer();
       if (playPauseBtn) freezeMainAudioUI();
       if (audioBar) audioBar.classList.add("clip-active", "disabled");
+      setSpotWidgetsDisabled(true);
+
+      document.querySelectorAll('.spot-widget').forEach(widget => {
+        const spotAudio = getSpotAudioForWidget(widget);
+        if (!spotAudio) return;
+
+        if (!spotAudio.paused) {
+          spotAudio.pause();
+          spotAudio.currentTime = 0;
+          spotAudio.volume = 1;
+          resetSpotWidgetUI(widget);
+        } else {
+          spotAudio.currentTime = 0;
+          spotAudio.volume = 1;
+          resetSpotWidgetUI(widget);
+        }
+      });
 
       // Get the current global volume level for fading clips
       const getGlobalVolume = () => window.getGlobalVolume ? window.getGlobalVolume() : 0.8;
@@ -874,6 +962,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (audioBar) audioBar.classList.remove("clip-active", "disabled");
           if (playPauseBtn) unfreezeMainAudioUI();
+          setSpotWidgetsDisabled(false);
+          document.querySelectorAll('.spot-widget').forEach(widget => {
+            const spotAudio = getSpotAudioForWidget(widget);
+            if (!spotAudio) return;
+            spotAudio.currentTime = 0;
+            spotAudio.volume = 1;
+            resetSpotWidgetUI(widget);
+          });
           activeClip = null;
         }
       }

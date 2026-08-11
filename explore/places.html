@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Map</title>
+  <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <style>
+    :root {
+      --maroon: #a30000;
+      --panel: #ffffff;
+      --ink: #2c2c2c;
+      --muted: #6e6e6e;
+      --line: #e3e3e3;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Abel', sans-serif;
+      background: #ffffff;
+      color: var(--ink);
+    }
+
+    .page-shell {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px 24px 48px;
+    }
+
+    .page-title {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      color: var(--maroon);
+    }
+
+    .page-intro {
+      margin: 0 0 24px;
+      max-width: 760px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .map-layout {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      width: 100%;
+    }
+
+    .map-shell {
+      flex: 0 1 100%;
+      min-width: 0;
+      max-width: 100%;
+      transition: flex-basis 0.3s ease, opacity 0.2s ease;
+    }
+
+    .map-shell.compact {
+      flex-basis: 68%;
+    }
+
+    .map-card {
+      position: relative;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+
+    .toggle-stack {
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: auto;
+    }
+
+    .toggle-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      min-width: 176px;
+      padding: 7px 8px 7px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.95);
+      border: 1px solid var(--line);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      font-size: 0.95rem;
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .toggle-pill.active {
+      background: #ffffff;
+      border-color: #cfcfcf;
+      color: var(--ink);
+    }
+
+    .toggle-pill .toggle-switch {
+      background: #d8d8d8;
+    }
+
+    .toggle-pill.active .toggle-switch {
+      background: var(--maroon);
+    }
+
+    .toggle-pill .toggle-switch::before {
+      transform: translateX(0);
+      background: #ffffff;
+    }
+
+    .toggle-pill.active .toggle-switch::before {
+      transform: translateX(20px);
+      background: #ffffff;
+    }
+
+    .toggle-pill input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      width: 44px;
+      height: 24px;
+      padding: 3px;
+      border-radius: 999px;
+      background: #d8d8d8;
+      transition: background 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .toggle-switch::before {
+      content: '';
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.16);
+      transform: translateX(0);
+      transition: transform 0.2s ease;
+    }
+
+
+    .map-stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #ffffff;
+      border: 1px solid var(--line);
+    }
+
+    .base-map,
+    .overlay-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .base-map svg,
+    .overlay-layer svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .overlay-layer {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+
+    .overlay-layer.active {
+      opacity: 1;
+    }
+
+    .pin {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      background: var(--maroon);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      transition: transform 0.18s ease, background 0.18s ease;
+      z-index: 2;
+    }
+
+    .pin:hover,
+    .pin.active {
+      transform: translate(-50%, -50%) scale(1.14);
+      background: #ffb703;
+    }
+
+    .details-panel {
+      width: 0;
+      min-width: 0;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: width 0.25s ease, opacity 0.2s ease, transform 0.25s ease;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .details-panel.open {
+      width: 320px;
+      min-width: 320px;
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    .details-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    }
+
+    .details-card h3 {
+      margin: 0 0 8px;
+      color: var(--maroon);
+      font-size: 1.25rem;
+    }
+
+    .details-card p {
+      margin: 0 0 12px;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+
+    .details-card .meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .details-card button {
+      border: none;
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: var(--maroon);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .map-layout {
+        flex-direction: column;
+      }
+
+      .details-panel.open {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="left-group">
+        <div class="logo"><a href="/"><img src="/assets/img/logo.png" alt="Work Life Canada Logo" style="scale: 150%;"></a></div>
+        <nav>
+          <ul>
+            <li><a href="/stories">Stories</a></li>
+            <li><a href="/exhibits">Exhibits</a></li>
+            <li><a href="/explore/images">Explore</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="nav-right">
+        <a href="#">About</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+  </header>
+
+<main class="stories-section">
+  <h1>EXPLORE</h1>
+<p class="intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate</p>
+  <div class="explore-nav-wrap">
+    <nav class="explore-nav">
+      <a href="/explore/images"> IMAGES </a>
+      <a href="/explore/sounds"> SOUNDS </a>
+      <a href="/explore/filterResults/null_null_null"> PEOPLE </a>
+      <a class="currentExplore" href="/explore/places"> PLACES </a>
+    </nav>
+  </div>
+
+  <main class="page-shell">
+
+    <div class="map-layout">
+      <div class="map-shell" id="mapShell">
+        <div class="map-card">
+          <div class="toggle-stack">
+            <label class="toggle-pill">
+              <span>Treaties</span>
+              <span class="toggle-switch"></span>
+              <input type="checkbox" class="toggle-layer" data-layer="layer-1" checked>
+            </label>
+            <label class="toggle-pill">
+              <span>Provinces and Territories</span>
+              <span class="toggle-switch"></span>
+              <input type="checkbox" class="toggle-layer" data-layer="layer-2">
+            </label>
+          </div>
+
+          <div class="map-stage">
+            <div class="base-map" aria-hidden="true">
+              <svg viewBox="0 0 1000 640" role="img" aria-label="Simple stylized map">
+                <rect x="0" y="0" width="1000" height="640" fill="#f4efe7"/>
+                <path d="M120 150C220 110 320 120 380 200C430 260 460 320 520 350C590 380 720 360 780 300C850 230 890 180 930 190L930 520C840 560 730 545 650 490C560 430 450 440 360 500C250 575 140 560 90 480C50 420 50 260 120 150Z" fill="#dbe8d8" stroke="#8ca983" stroke-width="4"/>
+                <path d="M220 170C270 220 310 250 350 260C440 280 520 220 570 240C640 270 670 340 760 360C800 370 840 350 890 320" fill="none" stroke="#7fb7a0" stroke-width="8" stroke-linecap="round"/>
+                <path d="M270 360C320 330 360 320 410 330C480 345 520 390 590 410C650 427 710 420 780 390" fill="none" stroke="#4f6b73" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
+                <path d="M190 210L320 300L420 250L560 330L730 300L840 400" fill="none" stroke="#b18d6e" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="298" cy="292" r="42" fill="#9ac4cb" opacity="0.6"/>
+                <circle cx="640" cy="364" r="54" fill="#9ac4cb" opacity="0.5"/>
+                <circle cx="796" cy="428" r="30" fill="#9ac4cb" opacity="0.45"/>
+              </svg>
+            </div>
+
+            <div class="overlay-layer layer-1 active" aria-hidden="true">
+              <svg viewBox="0 0 1000 640">
+                <rect x="0" y="0" width="1000" height="640" fill="none" />
+                <path d="M140 200C240 160 340 170 430 240C500 290 540 310 620 300C720 288 780 232 860 238" fill="none" stroke="#d39b00" stroke-width="34" stroke-linecap="round" opacity="0.7" />
+                <ellipse cx="320" cy="270" rx="90" ry="70" fill="#f4c95d" opacity="0.7" />
+                <ellipse cx="760" cy="250" rx="120" ry="85" fill="#f4c95d" opacity="0.7" />
+              </svg>
+            </div>
+
+            <div class="overlay-layer layer-2" aria-hidden="true">
+              <svg viewBox="0 0 1000 640">
+                <rect x="0" y="0" width="1000" height="640" fill="none" />
+                <circle cx="300" cy="300" r="110" fill="#95b7d4" opacity="0.7" />
+                <circle cx="720" cy="360" r="130" fill="#95b7d4" opacity="0.7" />
+                <rect x="470" y="160" width="170" height="120" rx="24" fill="#6e8fb9" opacity="0.7" />
+              </svg>
+            </div>
+
+            <button class="pin" data-title="Northern Alberta" data-meta="Treaty 8 • Michif" data-description="Stories go here!" style="left: 28%; top: 34%;"></button>
+            <button class="pin" data-title="Saskatchewan" data-meta="Lac La Ronge • " data-description="Stories go here!" style="left: 50%; top: 44%;"></button>
+            <button class="pin" data-title="Nova Scotia" data-meta="Name of Location • " data-description="Stories go here!" style="left: 73%; top: 58%;"></button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="details-panel" id="detailsPanel">
+        <div class="details-card">
+          <h3 id="detailsTitle">Select a pin</h3>
+          <div class="meta" id="detailsMeta"></div>
+          <p id="detailsDescription"></p>
+          <button type="button" id="closeDetails">Close</button>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    const toggles = Array.from(document.querySelectorAll('.toggle-layer'));
+    const overlays = {
+      'layer-1': document.querySelector('.overlay-layer.layer-1'),
+      'layer-2': document.querySelector('.overlay-layer.layer-2')
+    };
+
+    toggles.forEach(toggle => {
+      const label = toggle.closest('.toggle-pill');
+      const syncLabel = () => {
+        if (label) {
+          label.classList.toggle('active', toggle.checked);
+        }
+      };
+
+      toggle.addEventListener('change', () => {
+        const layer = overlays[toggle.dataset.layer];
+        if (!layer) return;
+        layer.classList.toggle('active', toggle.checked);
+        syncLabel();
+      });
+
+      syncLabel();
+    });
+
+    const pins = Array.from(document.querySelectorAll('.pin'));
+    const detailsPanel = document.getElementById('detailsPanel');
+    const detailsTitle = document.getElementById('detailsTitle');
+    const detailsMeta = document.getElementById('detailsMeta');
+    const detailsDescription = document.getElementById('detailsDescription');
+    const closeDetails = document.getElementById('closeDetails');
+    const mapShell = document.getElementById('mapShell');
+
+    function openDetails(pin) {
+      detailsTitle.textContent = pin.dataset.title || 'Selected location';
+      detailsMeta.textContent = pin.dataset.meta || '';
+      detailsDescription.textContent = pin.dataset.description || '';
+      detailsPanel.classList.add('open');
+      mapShell.classList.add('compact');
+    }
+
+    function closePanel() {
+      detailsPanel.classList.remove('open');
+      mapShell.classList.remove('compact');
+      pins.forEach(pin => pin.classList.remove('active'));
+    }
+
+    pins.forEach(pin => {
+      pin.addEventListener('click', () => {
+        pins.forEach(item => item.classList.toggle('active', item === pin));
+        openDetails(pin);
+      });
+    });
+
+    closeDetails.addEventListener('click', closePanel);
+  </script>
+</body>
+</html>
+
