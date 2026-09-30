@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Work-Life in Canada</title>
+  <title>Work Life in Canada</title>
   <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'></link>
   <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
@@ -31,11 +31,9 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <p><h1>Work Life</h1> <h1 style="color:brown;">in Canada</h1></p>
-    <p>
-      <strong>Work Life in Canada</strong> is a five-year research project that explores the diverse and changing social meanings of work through image, word, and sound. 
-    </p>
-  <div class="gallery-container">
+    <p><h1 style="font-weight: bold; font-size: 3.8em;">Work Life</h1> <h1 style="color:brown;">in Canada</h1></p>
+
+  <div class="gallery-container" data-pause-threshold="500">
     <div class="gallery-track" id="track">
       <!-- One full set of images -->
       
@@ -97,7 +95,6 @@
       
     </div>
   </div>
-    <a href="/stories" class="explore-btn">Explore Stories</a>
   </section>
 
   <!-- About Section -->
@@ -110,7 +107,7 @@
       <p>
         This new iteration, Work Life in Canada, adds a second set of photos, a work-life story, and workplace soundscape recordings. From this work will emerge a permanently available and fully searchable public digital collection—a first-of-its-kind knowledge resource in Canada. The site will reach multiple publics, secondary and postsecondary students, and scholars of work, family, intersectional life course, cultural studies, Indigenous studies, and social history.
       </p>
-      <a href="#" class="learn-more">More About The Project →</a>
+      <a href="#" class="learn-more" style="color: brown;">More About the Project →</a>
     </div>
 <div class="about-carousel">
   <div class="carousel-images-wrapper">
@@ -320,48 +317,166 @@
   </div>
 </div>
   
-  <!-- Controls -->
 
 
+
+  </section>
+
+  <section class="feature-banner" aria-label="Featured banner">
+    <div class="feature-banner-collage" aria-hidden="true"></div>
+    <div class="feature-banner-inner">
+      <h2>STORIES</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tempor finibus turpis, eu varius augue semper id. Praesent eget purus dui. Nullam finibus euismod urna vitae elementum. Suspendisse nunc lorem, porta sed massa commodo, ornare blandit dui.
+      </p>
+      <a href="/stories" class="feature-banner-btn">Explore Stories</a>
+    </div>
+  </section>
+
+  <section class="explore-section" aria-label="Explore Work Life in Canada">
+    <div class="explore-section-inner">
+      <h2>EXPLORE</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tempor finibus turpis, eu varius augue semper id. Praesent eget purus dui. Nullam finibus euismod urna vitae elementum. Suspendisse nunc lorem, porta sed massa commodo, ornare blandit dui.
+      </p>
+
+      <div class="explore-tiles">
+        <a href="/explore/images" class="explore-tile tile-images">
+          <span class="tile-inner"><span>Images</span></span>
+        </a>
+        <a href="/explore/sounds" class="explore-tile tile-sounds">
+          <span class="tile-inner"><span>Sounds</span></span>
+        </a>
+        <a href="/explore/people" class="explore-tile tile-people">
+          <span class="tile-inner"><span>People</span></span>
+        </a>
+        <a href="/explore/places" class="explore-tile tile-places">
+          <span class="tile-inner"><span>Places</span></span>
+        </a>
+      </div>
+    </div>
   </section>
 
   <!-- Footer -->
   <footer>
     <div class="footer-links">
-      <a href="#">Contact Us</a>
       <a href="#">Meet The Team</a>
-      <a href="#">About Us</a>
+      <a href="#">About</a>
     </div>
-<!--     <div class="footer-logos">
-      <img src="worklife_logo.png" alt="Worklife Canada">
-      <img src="dal_logo.png" alt="Dalhousie University">
-      <img src="york_logo.png" alt="York University">
-      <img src="ualberta_logo.png" alt="University of Alberta">
-    </div> -->
+ <div class="footer-logos">
+      <img src="/assets/img/footerWorkspace.jpg" alt="Worklife Canada">
+      <img src="/assets/img/footerUofA.png" alt="University of Alberta">
+      <img src="/assets/img/footerDalhousie.png" alt="Dalhousie University">
+      <img src="/assets/img/footerYork.png" alt="York University">
+    </div>
     <p>© All Rights Reserved</p>
   </footer>
 
 <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const galleryTrack = document.querySelector('.gallery-track');
+  if (!galleryTrack) return;
+
+  const images = Array.from(galleryTrack.querySelectorAll('img'));
+  if (images.length < 2) return;
+
+  for (let i = images.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [images[i], images[j]] = [images[j], images[i]];
+  }
+
+  images.forEach((img) => galleryTrack.appendChild(img));
+});
+
 // Gallery auto-scroll pause/resume functionality
+// Adjust the threshold in pixels to change when the gallery pauses during scroll.
 document.addEventListener("DOMContentLoaded", () => {
   const galleryContainer = document.querySelector('.gallery-container');
   const galleryTrack = document.querySelector('.gallery-track');
 
   if (!galleryContainer || !galleryTrack) return;
 
+  const scrollPauseThreshold = Number(galleryContainer.dataset.pauseThreshold) || 1.1;
   let isScrollPaused = false;
+
+  function applyGalleryPauseState(paused) {
+    isScrollPaused = paused;
+    galleryTrack.style.animationPlayState = paused ? 'paused' : 'running';
+    galleryContainer.style.cursor = paused ? 'pointer' : 'auto';
+    indicator.classList.toggle('paused', paused);
+  }
 
   // Create pause/play indicator
   const indicator = document.createElement('div');
   indicator.className = 'gallery-indicator';
   galleryContainer.appendChild(indicator);
 
+  function handleScrollPause() {
+    if (window.scrollY >= scrollPauseThreshold) {
+      applyGalleryPauseState(true);
+      return;
+    }
+
+    // Keep the user-controlled pause state intact after returning above the threshold.
+    // This allows the user to scroll back up and click to resume manually.
+  }
+
   galleryContainer.addEventListener('click', (e) => {
     e.stopPropagation();
-    isScrollPaused = !isScrollPaused;
-    galleryTrack.style.animationPlayState = isScrollPaused ? 'paused' : 'running';
-    galleryContainer.style.cursor = isScrollPaused ? 'pointer' : 'auto';
-    indicator.classList.toggle('paused', isScrollPaused);
+    applyGalleryPauseState(!isScrollPaused);
+  });
+
+  window.addEventListener('scroll', handleScrollPause, { passive: true });
+  handleScrollPause();
+});
+
+// Feature banner collage: select a unique random subset from the same portrait source used by the gallery.
+document.addEventListener("DOMContentLoaded", () => {
+  const collage = document.querySelector('.feature-banner-collage');
+  if (!collage) return;
+
+  const imageSources = Array.from(document.querySelectorAll('.gallery-track img'))
+    .map((img) => img.src)
+    .filter((src, index, arr) => src && arr.indexOf(src) === index);
+
+  if (!imageSources.length) return;
+
+  const shuffled = [...imageSources].sort(() => Math.random() - 0.5);
+  const selected = shuffled.slice(0, 12);
+
+  const placements = [
+    { left: '18px', top: '30px', width: '170px', height: '200px' },
+    { left: '200px', top: '140px', width: '190px', height: '220px' },
+    { left: '120px', top: '392px', width: '170px', height: '195px' },
+    { left: '520px', top: '60px', width: '180px', height: '210px' },
+    { left: '430px', top: '302px', width: '170px', height: '200px' },
+    { left: '620px', top: '468px', width: '164px', height: '190px' },
+
+    { right: '18px', top: '38px', width: '190px', height: '200px' },
+    { right: '230px', top: '146px', width: '190px', height: '220px' },
+    { right: '118px', top: '390px', width: '170px', height: '195px' },
+    { right: '520px', top: '64px', width: '180px', height: '210px' },
+    { right: '438px', top: '304px', width: '170px', height: '200px' },
+    { right: '620px', top: '470px', width: '164px', height: '190px' }
+  ];
+
+  selected.forEach((src, index) => {
+    const frame = document.createElement('div');
+    frame.className = 'feature-banner-frame';
+    frame.style.backgroundImage = `url('${src}')`;
+
+    const placement = placements[index] || placements[0];
+    Object.entries(placement).forEach(([key, value]) => {
+      frame.style[key] = value;
+    });
+
+    if (Object.prototype.hasOwnProperty.call(placement, 'right')) {
+      frame.style.left = 'auto';
+    } else {
+      frame.style.right = 'auto';
+    }
+
+    collage.appendChild(frame);
   });
 });
 </script>
@@ -369,13 +484,35 @@ document.addEventListener("DOMContentLoaded", () => {
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const track = document.querySelector('.carousel-track');
-  const slides = Array.from(track.children);
+  const captionContainer = document.querySelector('#caption-container');
   const nextBtn = document.querySelector('.carousel-btn.next');
   const prevBtn = document.querySelector('.carousel-btn.prev');
-  const captionPairs = document.querySelectorAll("#caption-container .caption-pair");
 
+  if (!track) return;
+
+  let slides = Array.from(track.children);
+  let captionPairs = captionContainer ? Array.from(captionContainer.children) : [];
   let currentIndex = 0;
   let isPaused = false;
+
+  function shufflePairs() {
+    const pairIndexes = slides.map((_, index) => index);
+
+    for (let i = pairIndexes.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pairIndexes[i], pairIndexes[j]] = [pairIndexes[j], pairIndexes[i]];
+    }
+
+    pairIndexes.forEach((index) => track.appendChild(slides[index]));
+
+    if (captionContainer) {
+      const captionNodes = Array.from(captionContainer.children);
+      pairIndexes.forEach((index) => captionContainer.appendChild(captionNodes[index]));
+    }
+
+    slides = Array.from(track.children);
+    captionPairs = captionContainer ? Array.from(captionContainer.children) : [];
+  }
 
   function updateCarousel() {
     const slideWidth = slides[0].getBoundingClientRect().width;
@@ -401,17 +538,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (nextBtn) nextBtn.addEventListener('click', showNextSlide);
   if (prevBtn) prevBtn.addEventListener('click', showPrevSlide);
-// Pause/unpause carousel on track click
+
+  // Pause/unpause carousel on track click
   track.addEventListener('click', (e) => {
     e.stopPropagation();
     isPaused = !isPaused;
     track.style.cursor = isPaused ? 'pointer' : 'auto';
   });
 
-  
   window.addEventListener('resize', updateCarousel);
 
-  updateCarousel(); // init
+  shufflePairs();
+  updateCarousel();
 });
 </script>
 

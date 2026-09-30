@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Work-Life in Canada</title>
+  <title>Work Life in Canada</title>
   <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'></link>
   <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
@@ -24,7 +24,6 @@
     </div>
     <div class="nav-right">
       <a href="#">About</a>
-      <a href="#">Contact Us</a>
     </div>
   </div>
 </header>
@@ -171,18 +170,18 @@
     </p>
   </div>
 </div>
-    <footer class = "story-footer">
+
+  <footer>
     <div class="footer-links">
-      <a href="#">Contact Us</a>
       <a href="#">Meet The Team</a>
-      <a href="#">About Us</a>
+      <a href="#">About</a>
     </div>
-<!--     <div class="footer-logos">
-      <img src="worklife_logo.png" alt="Worklife Canada">
-      <img src="dal_logo.png" alt="Dalhousie University">
-      <img src="york_logo.png" alt="York University">
-      <img src="ualberta_logo.png" alt="University of Alberta">
-    </div> -->
+ <div class="footer-logos">
+      <img src="/assets/img/footerWorkspace.jpg" alt="Worklife Canada">
+      <img src="/assets/img/footerUofA.png" alt="University of Alberta">
+      <img src="/assets/img/footerDalhousie.png" alt="Dalhousie University">
+      <img src="/assets/img/footerYork.png" alt="York University">
+    </div>
     <p>© All Rights Reserved</p>
   </footer>
 
@@ -237,6 +236,7 @@
       <div class="spot-timeline" id="spotTimeline01" aria-hidden="true">
         <div class="spot-line"></div>
         <div class="spot-circle" id="spotCircle01"></div>
+        <div class="spot-end-marker" aria-hidden="true"></div>
       </div>
       
       <div class="tooltip-wrap spot-tooltip-wrap">
@@ -296,6 +296,17 @@
 .spot-timeline { position:relative; width:180px; height:14px; display:block; }
 .spot-line { position:absolute; left:0; right:0; top:50%; height:4px; background: rgba(163,0,0,0.12); border-radius:2px; transform:translateY(-50%); }
 .spot-circle { position:absolute; left:0%; top:50%; transform:translate(-50%,-50%); width:14px; height:14px; border-radius:50%; background:#a30000; box-shadow:0 0 8px rgba(163,0,0,0.18); transition:left 0.08s linear; }
+.spot-end-marker {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 2px;
+  height: 12px;
+  background: rgba(120, 120, 120, 0.645);
+  transform: translateY(-50%);
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.25);
+}
 .audio-bar.hidden { display:none; }
 .tooltip-wrap { position: relative; display:inline-flex; align-items:center; margin-left:6px; }
 .info-btn { background: #fff; border: 1px solid #ccc; width:28px; height:28px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; color:#777; font-weight:bold; font-size:0.9rem; }
@@ -508,36 +519,36 @@ const bars = document.querySelectorAll('#visualizer div');
 let animationInterval = null;
 
 if (audio && playPauseBtn && playIcon && pauseIcon) {
-  // Ensure visualizer starts only once
+  function setFrozenVisualizerState() {
+    bars.forEach(bar => {
+      const randomHeight = 4 + Math.random() * 10;
+      bar.style.height = `${randomHeight}px`;
+      bar.style.opacity = '0.55';
+      bar.style.transform = 'scaleY(1)';
+    });
+  }
+
+  setFrozenVisualizerState();
+
   function startVisualizer() {
-    stopVisualizer(); // clear any old interval first
+    stopVisualizer();
     animationInterval = setInterval(() => {
       bars.forEach(bar => {
-        const height = Math.random() * 20 + 10;
+        const height = Math.random() * 18 + 12;
         bar.style.height = `${height}px`;
+        bar.style.opacity = '0.85';
+        bar.style.transform = 'scaleY(1)';
       });
     }, 220);
   }
 
-  // Ensure visualizer always stops cleanly
   function stopVisualizer() {
     if (animationInterval) {
       clearInterval(animationInterval);
       animationInterval = null;
     }
 
-    // Smooth fade down
-    bars.forEach(bar => {
-      bar.style.height = '4px';
-      bar.style.opacity = '0.3';
-    });
-
-    // Restore normal opacity once audio plays again
-    setTimeout(() => {
-      bars.forEach(bar => {
-        bar.style.opacity = '0.8';
-      });
-    }, 300);
+    setFrozenVisualizerState();
   }
 
 
@@ -830,6 +841,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let visualizerActive = false;
   let isMainAudioPlaying = false; // ✅ Manual flag for ambience state
 
+  setFrozenVisualizerState();
+
   // --- Fade helper ---
   function fadeAudio(el, to, duration = 1000, onComplete) {
     const step = 50;
@@ -847,6 +860,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- Visualizer animation ---
+  function setFrozenVisualizerState() {
+    document.querySelectorAll("#visualizer div").forEach(bar => {
+      const randomHeight = 4 + Math.random() * 10;
+      bar.style.height = `${randomHeight}px`;
+      bar.style.opacity = '0.55';
+      bar.style.transform = 'scaleY(1)';
+    });
+  }
+
   function startVisualizer() {
     visualizer.classList.remove("frozen");
     stopVisualizer();
@@ -854,8 +876,10 @@ document.addEventListener("DOMContentLoaded", () => {
     visualizerInterval = setInterval(() => {
       if (!visualizerActive) return;
       document.querySelectorAll("#visualizer div").forEach(bar => {
-        const scale = Math.random() * 0.7 + 0.7;
-        bar.style.transform = `scaleY(${scale})`;
+        const height = Math.random() * 18 + 12;
+        bar.style.height = `${height}px`;
+        bar.style.transform = 'scaleY(1)';
+        bar.style.opacity = '0.85';
       });
     }, 180);
   }
@@ -863,9 +887,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function stopVisualizer() {
     visualizerActive = false;
     clearInterval(visualizerInterval);
-    document.querySelectorAll("#visualizer div").forEach(bar => {
-      bar.style.transform = "scaleY(1)";
-    });
+    setFrozenVisualizerState();
   }
 
   // --- Freeze main controls when clip active ---

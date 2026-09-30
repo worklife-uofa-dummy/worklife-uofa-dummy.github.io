@@ -15,8 +15,15 @@
       --line: #e3e3e3;
     }
 
+    html, body {
+      height: 100%;
+    }
+
     body {
       margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
       font-family: 'Abel', sans-serif;
       background: #ffffff;
       color: var(--ink);
@@ -288,7 +295,6 @@
       </div>
       <div class="nav-right">
         <a href="#">About</a>
-        <a href="#">Contact Us</a>
       </div>
     </div>
   </header>
@@ -305,7 +311,7 @@
     </nav>
   </div>
 
-  <main class="page-shell">
+  <div class="page-shell">
 
     <div class="map-layout">
       <div class="map-shell" id="mapShell">
@@ -371,7 +377,8 @@
         </div>
       </aside>
     </div>
-  </main>
+  </div>
+</main>
 
   <script>
     const toggles = Array.from(document.querySelectorAll('.toggle-layer'));
@@ -429,6 +436,19 @@
 
     closeDetails.addEventListener('click', closePanel);
   </script>
+    <footer>
+    <div class="footer-links">
+      <a href="#">Meet The Team</a>
+      <a href="#">About</a>
+    </div>
+ <div class="footer-logos">
+      <img src="/assets/img/footerWorkspace.jpg" alt="Worklife Canada">
+      <img src="/assets/img/footerUofA.png" alt="University of Alberta">
+      <img src="/assets/img/footerDalhousie.png" alt="Dalhousie University">
+      <img src="/assets/img/footerYork.png" alt="York University">
+    </div>
+    <p>© All Rights Reserved</p>
+  </footer>
 </body>
 </html>
 

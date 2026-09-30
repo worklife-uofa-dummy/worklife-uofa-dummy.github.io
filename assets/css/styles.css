@@ -5,7 +5,14 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   font-family: 'Abel';
   line-height: 1.6;
   color: #333;
@@ -64,7 +71,7 @@ header .nav-right a {
   text-decoration: none;
   color: #333;
   font-weight: normal;
-  font-size: 1.2em;
+  font-size: 1.4em;
   transition: color 0.3s ease; /* smooth fade */
 }
 
@@ -242,6 +249,266 @@ header .nav-right {
 
 .explore-btn:visited {
   color: inherit;
+}
+
+.feature-banner {
+  position: relative;
+  width: 100%;
+  min-height: 680px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  background: #2d2d2ddb;
+  overflow: hidden;
+}
+
+.feature-banner-collage {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1920px;
+  height: 100%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.02);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.feature-banner-frame {
+  position: absolute;
+  display: block;
+  width: 160px;
+  height: 188px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid rgba(255, 255, 255, 0.82);
+  box-sizing: border-box;
+  opacity: 0.36;
+  filter: grayscale(100%) contrast(1.08);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.26) inset;
+}
+
+.feature-banner-inner {
+  position: relative;
+  z-index: 1;
+  width: min(760px, 52vw);
+  max-width: 760px;
+  padding: 60px 24px;
+  text-align: center;
+  color: #fff;
+}
+
+.feature-banner-kicker {
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.feature-banner-inner h2 {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.feature-banner-inner p {
+  max-width: 620px;
+  margin: 0 auto 28px;
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+.feature-banner-btn {
+  display: inline-block;
+  padding: 14px 30px;
+  border: 1px solid rgba(255,255,255,0.9);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.feature-banner-btn:hover {
+  background: rgba(255,255,255,0.22);
+  border-color: #fff;
+  transform: translateY(-1px);
+}
+
+.explore-section {
+  padding: 80px 24px 60px;
+  background: #fff;
+}
+
+.explore-section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.explore-section-inner h2 {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: 0.1em;
+  color: #a30000;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.explore-section-inner p {
+  max-width: 980px;
+  margin: 0 auto 36px;
+  font-size: 1.07rem;
+  line-height: 1.7;
+  color: #3f3f3f;
+}
+
+.explore-tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.explore-tile {
+  position: relative;
+  display: block;
+  min-height: 360px;
+  text-decoration: none;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 3px solid #fff;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: transform 0.25s ease, filter 0.25s ease;
+  outline: none;
+}
+
+.explore-tile,
+.explore-tile:visited,
+.explore-tile:focus,
+.explore-tile:active,
+.explore-tile:hover {
+  border-color: #fff;
+  outline: none;
+}
+
+.explore-tile:hover {
+  transform: translateY(-3px);
+  filter: grayscale(100%) brightness(0.95);
+}
+
+.explore-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.38);
+}
+
+.tile-inner {
+  position: absolute;
+  inset: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffffa9;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.tile-inner span {
+  color: #ffffffb9;
+  font-size: clamp(1.8rem, 2.4vw, 3rem);
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.35);
+}
+
+.tile-images {
+  background-image: url('../img/olivierGutknecht_img_soundCover.jpg');
+}
+
+.tile-sounds {
+  background-image: url('../img/cindyMujiGida_img_soundCover.jpg');
+}
+
+.tile-people {
+  background-image: url('../img/darrenGale_past.jpg');
+}
+
+.tile-places {
+  background-image: url('../img/neillJenson.jpg');
+}
+
+@media (max-width: 900px) {
+  .explore-tiles {
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
+  }
+
+  .about {
+    flex-direction: column;
+    padding: 40px 24px;
+    gap: 20px;
+  }
+
+  .about-text,
+  .about-carousel {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .about-carousel {
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (orientation: portrait) and (max-width: 1100px) {
+  .about {
+    flex-direction: column;
+  }
+
+  .about-text {
+    order: 1;
+    width: 100%;
+  }
+
+  .about-carousel {
+    order: 2;
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .explore-section {
+    padding-top: 60px;
+  }
+
+  .explore-section-inner p {
+    font-size: 1rem;
+  }
+
+  .explore-tiles {
+    grid-template-columns: 1fr;
+  }
+
+  .explore-tile {
+    min-height: 260px;
+  }
 }
 
 /* About Section */
@@ -1372,11 +1639,11 @@ header .nav-right {
 
 .filter-controls {
   display: flex;
-  gap: 20px;
+  gap: 5px;
   align-items: flex-end;
   justify-content: center;
-  padding: 30px 20px;
-  margin-bottom: 30px;
+  padding: 10px 20px;
+  margin-bottom: 40px;
   flex-wrap: wrap;
   font-size: .8em;
 }
@@ -1421,22 +1688,25 @@ header .nav-right {
 
 #tag-submit-btn {
   padding: 10px 30px;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 4px;
+  background: #fff;
+  color: #333;
+  border: 1px solid #333;
+  border-radius: 3px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 #tag-submit-btn:hover {
-  background-color: #555;
+  background-color: #f4f4f4;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }
 
 #tag-submit-btn:active {
-  background-color: #222;
+  background-color: #ececec;
+  transform: translateY(1px);
 }
 
 
@@ -1459,6 +1729,7 @@ header .nav-right {
 
 /* Footer */
 footer {
+  margin-top: auto;
   text-align: center;
   padding: 40px 20px;
   background: #f9f9f9;
